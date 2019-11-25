@@ -13,7 +13,7 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	}
 	
 	@Override
-	public boolean startSession(String user, String password) {
+	public boolean startSession(String user, String password) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -109,19 +109,19 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	}
 
 	@Override
-	public ArrayList<String> showQueueResources(boolean meta, int id) {
+	public ArrayList<String> showQueueResources(boolean meta, int id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<String> showQueueBook(int id) {
+	public ArrayList<String> showQueueBook(int id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<String> showQueueMetaProduct(int id) {
+	public ArrayList<String> showQueueMetaProduct(int id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

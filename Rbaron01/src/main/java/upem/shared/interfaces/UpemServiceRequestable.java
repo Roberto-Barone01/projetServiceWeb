@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface UpemServiceRequestable extends Remote{
 	
-	boolean startSession(String user, String password);
+	boolean startSession(String user, String password) throws RemoteException;
 	
 	ArrayList<String> getAllResources() throws RemoteException;
 	ArrayList<String> getResources(boolean meta) throws RemoteException;
@@ -27,9 +27,9 @@ public interface UpemServiceRequestable extends Remote{
 	void removeMeQueueBook(String user, int id) throws RemoteException;
 	void removeMeQueueMetaProduct(String user, int id) throws RemoteException;
 	
-	ArrayList<String> showQueueResources(boolean meta, int id);
-	ArrayList<String> showQueueBook(int id);
-	ArrayList<String> showQueueMetaProduct(int id);
+	ArrayList<String> showQueueResources(boolean meta, int id) throws RemoteException;
+	ArrayList<String> showQueueBook(int id) throws RemoteException;
+	ArrayList<String> showQueueMetaProduct(int id) throws RemoteException;
 	
 
 }
