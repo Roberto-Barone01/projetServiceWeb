@@ -31,5 +31,4 @@ public interface UpemServiceRequestable extends Remote{
 	ArrayList<String> showQueueBook(int id) throws RemoteException;
 	ArrayList<String> showQueueMetaProduct(int id) throws RemoteException;
 	
-
 }
