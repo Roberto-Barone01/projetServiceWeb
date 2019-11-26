@@ -5,8 +5,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface UpemServiceRequestable extends Remote{
-	
-	boolean startSession(String user, String password) throws RemoteException;
+
+	public int myId() throws RemoteException;
+	public boolean isConnected() throws RemoteException;
 	
 	ArrayList<String> getAllResources() throws RemoteException;
 	ArrayList<String> getResources(boolean meta) throws RemoteException;

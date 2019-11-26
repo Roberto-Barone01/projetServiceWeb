@@ -25,5 +25,7 @@ public class UpemConnection {
 		LocateRegistry.createRegistry(port);
 		Naming.rebind(prefix+""+port+"/"+identifier, upemService);
 	}
+	
+	
 
 }

@@ -8,15 +8,23 @@ import upem.shared.interfaces.UpemServiceRequestable;
 
 public class UpemService extends UnicastRemoteObject implements UpemServiceRequestable{
 
+	
+	private UserDate user;
+	
 	UpemService() throws RemoteException{
 		super();
 	}
 	
-	@Override
-	public boolean startSession(String user, String password) throws RemoteException {
-		// TODO Auto-generated method stub
+	
+	void addUser(UserDate user) {
+		this.user = user;
+		
+	}
+	
+	boolean checkUser(){
 		return false;
 	}
+	
 
 	@Override
 	public ArrayList<String> getAllResources() throws RemoteException {
@@ -124,6 +132,20 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	public ArrayList<String> showQueueMetaProduct(int id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public int myId() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public boolean isConnected() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
