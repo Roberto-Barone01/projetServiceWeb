@@ -8,7 +8,7 @@ import upem.shared.interfaces.UpemServiceRequestable;
 
 public class UpemService extends UnicastRemoteObject implements UpemServiceRequestable{
 
-	
+	private final DBOp qm = new DBOp();
 	private UserDate user;
 	
 	UpemService() throws RemoteException{
