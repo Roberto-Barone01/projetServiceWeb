@@ -9,17 +9,17 @@ import java.util.logging.Logger;
 public class DBOp {
 		
     private final String nameDb="DBServiceWeb.db";
-    private final String path="C:/sqlite/db";
+    private final String path="C:/sqlite/";
     //name driver
     private final String nameD="jdbc:sqlite:";
     
-    private Connection connection() throws SQLException{
+    public Connection connection() throws SQLException{
         Connection conn = null;
         conn = DriverManager.getConnection(nameD+path+nameDb);
         return conn;
     }
     
-    private void stop(Connection conn) throws SQLException{
+    public void stop(Connection conn) throws SQLException{
         conn.close();
     }
     
