@@ -15,7 +15,7 @@ public class MainServer {
 		
 	//UpemConnection conn = RMIUPEMServiceManager.startConnection();
             try {
-                new Gen100().metaResource();
+                System.out.println(new DBOp().infoBook(393));
             } catch (SQLException ex) {
                 Logger.getLogger(MainServer.class.getName()).log(Level.SEVERE, null, ex);
             }
