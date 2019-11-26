@@ -15,14 +15,26 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 		super();
 	}
 	
+        
+        /* Il ajoute un user qui commente sa session
+        @param user qui commente sa session
+        */
 	
 	void addUser(UserDate user) {
 		this.user = user;
 		
 	}
+        
+        
+        /*
+        Il contrôle si l'user a commence sa propre session
+        @return true si l'user a commente sa prore sessione, falsa si l'user n'a pas commente sa session
+        */
 	
-	boolean checkUser(){
+	boolean check(){
+            if(user== null)
 		return false;
+            return true;
 	}
 	
 
@@ -57,63 +69,27 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	}
 
 	@Override
-	public String getDateslogyOfMetaProduct(int id) throws RemoteException {
+	public String getDatesOfMetaProduct(int id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean tryToGetResource(boolean meta, String user, int id) throws RemoteException {
+	public boolean tryToGetResource(boolean meta, String user, int id, boolean addMe) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean tryToGetBook(String user, int id) throws RemoteException {
+	public boolean tryToGetBook(String user, int id, boolean addMe) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean tryToGetMetaProduct(String user, int id) throws RemoteException {
+	public boolean tryToGetMetaProduct(String user, int id, boolean addMe) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public void addMeToQueueResource(String user, boolean meta, int id) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addMeToQueueBook(String user, int id) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addMeToQueueMetaProduct(String user, int id) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeMeQueueResource(String user, boolean meta, int id) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeMeQueueBook(String user, int id) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeMeQueueMetaProduct(String user, int id) throws RemoteException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -147,5 +123,29 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+    public void removeMeQueueResource(boolean meta, int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void removeMeQueueBook(int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void removeMeQueueMetaProduct(int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void removeResource(int id, boolean meta) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void removeBook(int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void removeMetaResource(int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
