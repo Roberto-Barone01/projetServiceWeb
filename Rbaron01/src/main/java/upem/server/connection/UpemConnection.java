@@ -26,6 +26,4 @@ public class UpemConnection {
 		Naming.rebind(prefix+""+port+"/"+identifier, upemService);
 	}
 	
-	
-
 }
