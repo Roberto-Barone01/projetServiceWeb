@@ -21,9 +21,10 @@ public class UpemConnection {
 		this.upemService = new UpemService();
 	}
 	
-	private void init() throws RemoteException, MalformedURLException {
+	 UpemConnection init() throws RemoteException, MalformedURLException {
 		LocateRegistry.createRegistry(port);
 		Naming.rebind(prefix+""+port+"/"+identifier, upemService);
+                return this;
 	}
 	
 }

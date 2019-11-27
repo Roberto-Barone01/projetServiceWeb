@@ -10,13 +10,21 @@ public interface UpemServiceRequestable extends Remote{
     
     
         interface UpemResponse extends Remote{
+            
+            
+            int SEVER_ERROR = 1000;
+            
             public int code() throws RemoteException;
-            public Map<String,String> result() throws RemoteException;
+            public ArrayList<SingleRow> result() throws RemoteException;
+        }
+        
+        interface SingleRow extends Remote{
+            Map<String,String> get() throws RemoteException;
         }
 	
-	UpemResponse getAllResources() throws RemoteException;
 	UpemResponse getResources(boolean meta) throws RemoteException;
 	UpemResponse getAllBooks() throws RemoteException;
+        UpemResponse getAllMeta() throws RemoteException;
 	
 	UpemResponse getDatesfResource(boolean meta, int id) throws RemoteException;
 	UpemResponse getDatesfBook(int id) throws RemoteException;

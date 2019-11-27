@@ -1,5 +1,6 @@
 package upem.server.connection;
 
+import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
 public class RMIUPEMServiceManager {
@@ -10,11 +11,11 @@ public class RMIUPEMServiceManager {
 	 * @return	Un objet qui rappresente une connection en utilisant le protocol RMI 
 	 */
 	
-	public static UpemConnection startConnection() throws RemoteException {
-		int port = 4444;
+	public static UpemConnection startConnection() throws RemoteException, MalformedURLException {
+		int port = 4499;
 		String identifier = "upemService";
 		
-		return new UpemConnection(port,identifier);
+		return new UpemConnection(port,identifier).init();
 		
 	}
 

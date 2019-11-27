@@ -69,7 +69,9 @@ public class DBOp {
     }
     
     
-    public ArrayList<String> resources(boolean meta) throws SQLException{
+    public UpemResponseImp resources(boolean meta) throws SQLException{
+        
+        UpemResponseImp risp = new UpemResponseImp();
         
         Connection conn = connection();
         String query = "";
@@ -79,37 +81,42 @@ public class DBOp {
             query = "SELECT * FROM book WHERE deleted = false";
         PreparedStatement stm = conn.prepareStatement(query);
         ResultSet risQuery = stm.executeQuery();
-        ArrayList<String> ris = new ArrayList<String>();
-        StringJoiner tmp = new StringJoiner("\n ");
+
+
         while(risQuery.next()){
+            
+            SingleRow row = new SingleRow();
+            
             if(meta){
-                tmp.add("Type: "+risQuery.getString("meta_type"));
-                tmp.add("Name: "+risQuery.getString("meta_name"));
-                tmp.add("State: "+risQuery.getString("state"));
-                tmp.add("Comment: "+risQuery.getString("comment"));
+                row.put("Type", risQuery.getString("meta_type"));
+                row.put("Name", risQuery.getString("meta_name"));
+                row.put("State", risQuery.getString("state"));
+                row.put("Comment", risQuery.getString("comment"));
+                
             }else{
-                tmp.add("Title: "+risQuery.getString("title"));
-                tmp.add("ISBN: "+risQuery.getString("isbn"));
-                tmp.add("Num Pages: "+risQuery.getString("pages"));
-                tmp.add("publisher: "+risQuery.getString("publisher"));
-                tmp.add("Year: "+risQuery.getString("year"));
-                tmp.add("State: "+risQuery.getString("state"));
-                tmp.add("Comment: "+risQuery.getString("comment"));
+                row.put("Title", risQuery.getString("title"));
+                row.put("ISBN", risQuery.getString("isbn"));
+                row.put("Pages", risQuery.getString("pages"));
+                row.put("Publisher", risQuery.getString("publisher"));
+                row.put("Year", risQuery.getString("year"));
+                row.put("State", risQuery.getString("state"));
+                row.put("Comment", risQuery.getString("comment"));
             }
-            ris.add(tmp.toString());
+            risp.add(row);
+
         }
         
         stop(conn);
-        return ris;
+        return risp;
             
     
     }
     
-    public ArrayList<String> meta() throws SQLException{
+    public UpemResponseImp meta() throws SQLException{
         return resources(true);
     }
     
-    public ArrayList<String> books() throws SQLException{
+    public UpemResponseImp books() throws SQLException{
         return resources(false);
     }
     
