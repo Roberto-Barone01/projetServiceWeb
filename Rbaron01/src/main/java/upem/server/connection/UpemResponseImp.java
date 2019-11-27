@@ -1,12 +1,13 @@
 
 package upem.server.connection;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Map;
 import upem.shared.interfaces.UpemServiceRequestable;
 
-public class UpemResponseImp implements UpemServiceRequestable.UpemResponse {
+public class UpemResponseImp implements UpemServiceRequestable.UpemResponse, Serializable {
 
     private int code;
     ArrayList<UpemServiceRequestable.SingleRow> ris = new ArrayList<UpemServiceRequestable.SingleRow>();
