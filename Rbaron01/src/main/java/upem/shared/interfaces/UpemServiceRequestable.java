@@ -13,9 +13,6 @@ public interface UpemServiceRequestable extends Remote{
             public int code() throws RemoteException;
             public Map<String,String> result() throws RemoteException;
         }
-    
-
-	boolean isConnected() throws RemoteException;
 	
 	UpemResponse getAllResources() throws RemoteException;
 	UpemResponse getResources(boolean meta) throws RemoteException;
@@ -41,5 +38,9 @@ public interface UpemServiceRequestable extends Remote{
         boolean removeResource(String user, String password, int id, boolean meta) throws RemoteException;
         boolean removeBook(String user, String password, int id) throws RemoteException;
         boolean removeMetaResource(String user, String password, int id) throws RemoteException;
+        
+        boolean addResource(String user, String password, int id, boolean meta) throws RemoteException;
+        boolean addBook(String user, String password, int id) throws RemoteException;
+        boolean addMetaResource(String user, String password, int id) throws RemoteException;
         
 }
