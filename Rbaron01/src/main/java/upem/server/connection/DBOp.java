@@ -1,14 +1,18 @@
 package upem.server.connection;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import upem.shared.interfaces.BookAddable;
 
 public class DBOp {
 		
@@ -68,6 +72,41 @@ public class DBOp {
         
     }
     
+    public void addBook(BookAddable book ) throws RemoteException, SQLException{
+        
+        String year = book.getYear();
+        String edition = book.getEdition();
+        String title = book.getTitle();
+        String publisher = book.getPublisher();
+        int pages = book.getPages();
+        String isbn = book.getIsbn();
+        String comment = book.getComment();
+        String state = book.getState();
+        double price = book.getPrice();
+        
+        Connection conn = connection();
+        
+        String inser = "INSERT INTO book"
+                + "(edition,year,title,publisher,pages,isbn,comment,state,price)"
+                + "VALUES(?,?,?,?,?,?,?,?,?,?) ";
+        PreparedStatement stm = conn.prepareStatement(inser);
+        
+        stm.setString(1, edition);
+        stm.setString(2, year);
+        stm.setString(3, title);
+        stm.setString(4, publisher);
+        stm.setInt(5, pages);
+        stm.setString(6, isbn);
+        stm.setString(7, comment);
+        stm.setString(8, state);
+        stm.setDouble(9, price);
+            
+        stm.executeUpdate();
+        stop(conn);
+        
+        
+    }
+    
     
     public UpemResponseImp resources(boolean meta) throws SQLException{
         
@@ -88,19 +127,21 @@ public class DBOp {
             SingleRow row = new SingleRow();
             
             if(meta){
-                row.put("Type", risQuery.getString("meta_type"));
-                row.put("Name", risQuery.getString("meta_name"));
-                row.put("State", risQuery.getString("state"));
-                row.put("Comment", risQuery.getString("comment"));
+                row.put("id",risQuery.getString("id"));
+                row.put("meta_type", risQuery.getString("meta_type"));
+                row.put("meta_name", risQuery.getString("meta_name"));
+                row.put("state", risQuery.getString("state"));
+                row.put("comment", risQuery.getString("comment"));
                 
             }else{
-                row.put("Title", risQuery.getString("title"));
-                row.put("ISBN", risQuery.getString("isbn"));
-                row.put("Pages", risQuery.getString("pages"));
-                row.put("Publisher", risQuery.getString("publisher"));
-                row.put("Year", risQuery.getString("year"));
-                row.put("State", risQuery.getString("state"));
-                row.put("Comment", risQuery.getString("comment"));
+                row.put("id",risQuery.getString("id"));
+                row.put("title", risQuery.getString("title"));
+                row.put("isbn", risQuery.getString("isbn"));
+                row.put("pages", risQuery.getString("pages"));
+                row.put("publisher", risQuery.getString("publisher"));
+                row.put("year", risQuery.getString("year"));
+                row.put("state", risQuery.getString("state"));
+                row.put("comment", risQuery.getString("comment"));
             }
             risp.add(row);
 
@@ -108,8 +149,7 @@ public class DBOp {
         
         stop(conn);
         return risp;
-            
-    
+
     }
     
     public UpemResponseImp meta() throws SQLException{
@@ -123,10 +163,12 @@ public class DBOp {
     
     
     /*
-    Il retourne les info d'un produit
+    Il retourne les info d'un produit en donnent l'id
     @return string avec les info ou null s'il n'existe aucine produit avec l'id donné
     */
-    public String info(boolean meta, int id) throws SQLException{
+    public Map<String,String> info(boolean meta, int id) throws SQLException{
+        
+        Map<String,String> map = new HashMap<String,String>();
         
         Connection conn = connection();
         String query = "";
@@ -146,29 +188,32 @@ public class DBOp {
         StringBuilder ris = new StringBuilder();
         if(risQ.next()){
             if(meta){
-                ris.append("User: "+risQ.getString("username"));
-                ris.append("date: "+risQ.getString("date"));
-                ris.append("meta name: "+risQ.getString("meta_name"));
-                ris.append("meta type: "+risQ.getString("meta_type"));
+                
+                map.put("username", risQ.getString("username"));
+                map.put("date", risQ.getString("date"));
+                map.put("meta_name", risQ.getString("meta_name"));
+                map.put("meta_type", risQ.getString("meta_type"));
+
             }else{
-                ris.append("User: "+risQ.getString("username"));
-                ris.append("date: "+risQ.getString("date"));
-                ris.append("Title: "+risQ.getString("title"));
-                ris.append("ISBN: "+risQ.getString("isbn"));
-                ris.append("State: "+risQ.getString("state"));
-                ris.append("Publisher: "+risQ.getString("publisher"));
+                
+                map.put("username", risQ.getString("username"));
+                map.put("date", risQ.getString("date"));
+                map.put("title", risQ.getString("title"));
+                map.put("isbn", risQ.getString("isbn"));
+                map.put("state", risQ.getString("state"));
+                map.put("publisher", risQ.getString("publisher"));
             }
-            return ris.toString();
+            return map;
         }
         return null;
         
     }
     
-    public String infoBook(int id) throws SQLException{
+    public Map<String,String> infoBook(int id) throws SQLException{
         return info(false,id);
     }
     
-    public String infoMeta(int id) throws SQLException{
+    public Map<String,String> infoMeta(int id) throws SQLException{
         return info(true,id);
     }
 }

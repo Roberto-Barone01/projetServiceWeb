@@ -8,6 +8,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import upem.shared.interfaces.BookAddable;
 import upem.shared.interfaces.UpemServiceRequestable;
 import upem.shared.interfaces.UpemServiceRequestable.SingleRow;
 import upem.shared.interfaces.UpemServiceRequestable.UpemResponse;
@@ -20,7 +21,7 @@ public class MainClient {
         try {
             
             UpemServiceRequestable req = (UpemServiceRequestable) Naming.lookup("rmi://localhost:4499/upemService");
-            
+            /*
             UpemResponse risp = req.getAllMeta();
             if(risp.result().size()>0){
                ArrayList<SingleRow> rows = risp.result();
@@ -29,6 +30,11 @@ public class MainClient {
                     
                 }
             }
+            */
+            BookAddable book = req.initialiseBook();
+            book.title("Bella Cioa").publisher("No one").price(0).comment("Ciao");
+            req.addBook(null, null, book);
+            
         
         
         } catch (NotBoundException ex) {

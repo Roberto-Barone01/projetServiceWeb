@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import upem.shared.interfaces.BookAddable;
 
 import upem.shared.interfaces.UpemServiceRequestable;
 
@@ -89,9 +90,17 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
     public boolean addResource(String user, String password, int id, boolean meta) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    /* book field */
+    
+   
+    
+    
+    
 
-    public boolean addBook(String user, String password, int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public UpemServiceRequestable addBook(String user, String password, int id) throws RemoteException {
+        
+        return this;
     }
 
     public boolean addMetaResource(String user, String password, int id) throws RemoteException {
@@ -107,6 +116,44 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
             }
     }
 
+    public UpemResponse getInfofResource(boolean meta, int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    public UpemResponse getInfofBook(int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public UpemResponse getInfoOfMeta(int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean tryToGetMeta(String user, String password, int id, boolean addMe) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean removeMeQueueMeta(String User, String password, int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public UpemResponse showQueueMeta(int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean removeMeta(String user, String password, int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public UpemResponse addBook(String user, String password, BookAddable book) throws RemoteException {
+        Book b = (Book) book;
+        System.out.println(b.isbn);
+        return null;
+    }
+
+    public BookAddable initialiseBook() throws RemoteException {
+        return new Book();
+    }
+
+    
 
 }
