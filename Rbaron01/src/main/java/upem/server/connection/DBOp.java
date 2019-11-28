@@ -13,6 +13,7 @@ import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import upem.shared.interfaces.BookProperty;
+import static upem.shared.interfaces.UpemServiceRequestable.ID_BOOK_MISSING;
 
 public class DBOp {
 		
@@ -205,9 +206,12 @@ public class DBOp {
             }
             
             risp.add(new SingleRow(map));
+            stop(conn);
             return risp;
         }
-        return null;
+        stop(conn);
+        
+        return new UnaryUpemResponseImp(ID_BOOK_MISSING);
         
     }
     
@@ -217,5 +221,41 @@ public class DBOp {
     
     public UnaryUpemResponseImp infoMeta(int id) throws SQLException{
         return info(true,id);
+    }
+    
+    public boolean resource_served(int id, boolean meta) throws SQLException{
+        Connection conn = connection();
+        
+        String query = "";
+        
+        if(meta)
+            query = "SELECT meta_resource.id FROM meta_resource, user_add_meta_resource" +
+                    "WHERE meta_resource.id = user_add_meta_resource.id_meta_resource AND meta_resource.id = ? AND " +
+                    "user_add_meta_resource.state IS 'reserved'";
+        else
+            query = "SELECT book.id FROM book, user_add_book" +
+                    "WHERE book.id = user_add_book.id_book AND book.id  = ? AND " +
+                    "user_add_book.state IS 'reserved'";
+        
+        PreparedStatement stm = conn.prepareStatement(query);
+        stm.setInt(1, id);
+        
+        ResultSet result = stm.executeQuery();
+        
+        
+        boolean ris = false;
+        if(result.next())
+            ris = true;
+        
+        stop(conn);
+        return ris;
+    }
+    
+    public boolean book_served(int id, boolean meta) throws SQLException{
+        return resource_served(id, false);
+    }
+    
+    public boolean meta_served(int id, boolean meta) throws SQLException{
+        return resource_served(id, true);
     }
 }

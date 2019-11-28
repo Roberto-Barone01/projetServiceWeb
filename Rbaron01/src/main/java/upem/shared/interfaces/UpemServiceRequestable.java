@@ -9,6 +9,7 @@ import java.util.Map;
 public interface UpemServiceRequestable extends Remote{
     
     int SERVER_ERROR = 1000;
+    int ID_BOOK_MISSING = 1001;
     
         interface UpemResponse extends Remote{
             public int code() throws RemoteException;
@@ -45,6 +46,14 @@ public interface UpemServiceRequestable extends Remote{
 	UnaryUpemResponse showQueueBook(int id) throws RemoteException;
 	UnaryUpemResponse showQueueMeta(int id) throws RemoteException;
 	
+        UpemResponse showMyQueues(String user, String password, boolean meta) throws RemoteException;
+        UpemResponse showMyQueuesBook(String user, String password) throws RemoteException;
+        UpemResponse showMyQueuesMeta(String user, String password) throws RemoteException;
+        
+        UpemResponse showMyResouces(String user, String password, boolean meta) throws RemoteException;
+        UpemResponse showMyBooks(String user, String password) throws RemoteException;
+        UpemResponse showMyMetas(String user, String password) throws RemoteException;
+        
         UnaryUpemResponse removeResource(String user, String password, int id, boolean meta) throws RemoteException;
         UnaryUpemResponse removeBook(String user, String password, int id) throws RemoteException;
         UnaryUpemResponse removeMeta(String user, String password, int id) throws RemoteException;

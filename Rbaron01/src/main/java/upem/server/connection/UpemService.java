@@ -110,4 +110,28 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
     public MetaProperty initialiseMeta(String user, String Password) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public UpemResponse showMyQueues(String user, String password, boolean meta) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public UpemResponse showMyQueuesBook(String user, String password) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public UpemResponse showMyQueuesMeta(String user, String password) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public UpemResponse showMyResouces(String user, String password, boolean meta) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public UpemResponse showMyBooks(String user, String password) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public UpemResponse showMyMetas(String user, String password) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
