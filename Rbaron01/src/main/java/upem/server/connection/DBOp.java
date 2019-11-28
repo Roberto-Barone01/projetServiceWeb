@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import upem.shared.interfaces.BookAddable;
+import upem.shared.interfaces.BookProperty;
 
 public class DBOp {
 		
@@ -72,7 +72,7 @@ public class DBOp {
         
     }
     
-    public void addBook(BookAddable book ) throws RemoteException, SQLException{
+    public void addBook(BookProperty book ) throws RemoteException, SQLException{
         
         String year = book.getYear();
         String edition = book.getEdition();

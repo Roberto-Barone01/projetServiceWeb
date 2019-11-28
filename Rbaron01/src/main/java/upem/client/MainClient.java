@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import upem.shared.interfaces.BookAddable;
+import upem.shared.interfaces.BookProperty;
 import upem.shared.interfaces.UpemServiceRequestable;
 import upem.shared.interfaces.UpemServiceRequestable.SingleRow;
 import upem.shared.interfaces.UpemServiceRequestable.UpemResponse;
@@ -31,7 +31,7 @@ public class MainClient {
                 }
             }
             */
-            BookAddable book = req.initialiseBook();
+            BookProperty book = req.initialiseBook();
             book.title("Bella Cioa").publisher("No one").price(0).comment("Ciao");
             req.addBook(null, null, book);
             

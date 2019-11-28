@@ -3,10 +3,10 @@ package upem.server.connection;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import upem.shared.interfaces.BookAddable;
+import upem.shared.interfaces.BookProperty;
 
 
-public class Book extends UnicastRemoteObject implements BookAddable {
+public class Book extends UnicastRemoteObject implements BookProperty {
     
     String title;
     String publisher;
@@ -18,12 +18,12 @@ public class Book extends UnicastRemoteObject implements BookAddable {
     String edition;
     String year;
     
-    public BookAddable edition(String edition){
+    public Book edition(String edition){
         this.edition = edition;
         return this;
     }
     
-    public BookAddable year(String year){
+    public Book year(String year){
         this.year = year;
         return this;
     }
@@ -62,38 +62,38 @@ public class Book extends UnicastRemoteObject implements BookAddable {
         super();
     }
 
-    public BookAddable title(String title) throws RemoteException {
+    public Book title(String title) throws RemoteException {
         this.title = title;
         return this;
     }
 
-    public BookAddable publisher(String publisher) throws RemoteException {
+    public Book publisher(String publisher) throws RemoteException {
         this.publisher = publisher;
         return this;
     }
 
 
-    public BookAddable pages(int pages) throws RemoteException {
+    public Book pages(int pages) throws RemoteException {
         this.pages = pages;
         return this;
     }
 
-    public BookAddable isbn(String isbn) throws RemoteException {
+    public Book isbn(String isbn) throws RemoteException {
         this.isbn = isbn;
         return this;
     }
 
-    public BookAddable comment(String comment) throws RemoteException {
+    public Book comment(String comment) throws RemoteException {
         this.comment = comment;
         return this;
     }
 
-    public BookAddable state(String state) throws RemoteException {
+    public Book state(String state) throws RemoteException {
         this.state = state;
         return this;
     }
 
-    public BookAddable price(double price) throws RemoteException {
+    public Book price(double price) throws RemoteException {
         this.price = price;
         return this;
     }

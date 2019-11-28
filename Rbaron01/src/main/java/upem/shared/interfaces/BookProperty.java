@@ -5,17 +5,17 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import upem.shared.interfaces.UpemServiceRequestable.UpemResponse;
 
-public interface BookAddable extends Remote {
+public interface BookProperty extends Remote {
     
-    BookAddable title(String title) throws RemoteException;
-    BookAddable publisher(String publisher) throws RemoteException;
-    BookAddable year(String year) throws RemoteException;
-    BookAddable pages(int pages) throws RemoteException;
-    BookAddable isbn(String isbn) throws RemoteException;
-    BookAddable comment(String commento) throws RemoteException;
-    BookAddable state(String state) throws RemoteException;
-    BookAddable price(double price) throws RemoteException;
-    BookAddable edition(String edition) throws RemoteException;
+    BookProperty title(String title) throws RemoteException;
+    BookProperty publisher(String publisher) throws RemoteException;
+    BookProperty year(String year) throws RemoteException;
+    BookProperty pages(int pages) throws RemoteException;
+    BookProperty isbn(String isbn) throws RemoteException;
+    BookProperty comment(String commento) throws RemoteException;
+    BookProperty state(String state) throws RemoteException;
+    BookProperty price(double price) throws RemoteException;
+    BookProperty edition(String edition) throws RemoteException;
     
     public String getTitle() throws RemoteException;
     public String getPublisher() throws RemoteException;
