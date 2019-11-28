@@ -89,8 +89,8 @@ public class Gen100 {
         Connection conn = db.connection();
         
         String inser = "INSERT INTO meta_resource"
-                + "(meta_type,meta_name,state,comment, deleted)"
-                + "VALUES(?,?,?,?,?) ";
+                + "(meta_type,meta_name,state,comment,deleted,price)"
+                + "VALUES(?,?,?,?,?,?) ";
         
         for(int i=0;i<100;i++){
             
@@ -99,6 +99,7 @@ public class Gen100 {
             String state = (i%2==0) ? "new" : "used";
             String comment = f.yoda().quote();
             boolean deleted = false;
+            double price = f.number().randomDouble(2, 5, 200);
             
             PreparedStatement stm = conn.prepareStatement(inser);
             
@@ -107,6 +108,7 @@ public class Gen100 {
             stm.setString(3,state);
             stm.setString(4,comment);
             stm.setBoolean(5,deleted);
+            stm.setDouble(6, price);
             
             stm.executeUpdate();
             

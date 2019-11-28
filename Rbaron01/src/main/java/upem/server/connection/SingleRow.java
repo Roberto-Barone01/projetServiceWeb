@@ -8,7 +8,12 @@ import upem.shared.interfaces.UpemServiceRequestable;
 
 public class SingleRow implements Serializable, UpemServiceRequestable.SingleRow{
     
-    final Map<String,String> map = new HashMap<String,String>();
+    Map<String,String> map;
+    
+    SingleRow(Map<String,String> map){
+        this.map = map;
+    }
+
     
     void put(String k, String a){
         map.put(k, a);

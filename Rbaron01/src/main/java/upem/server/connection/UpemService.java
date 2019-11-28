@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import upem.shared.interfaces.BookProperty;
+import upem.shared.interfaces.MetaProperty;
 
 import upem.shared.interfaces.UpemServiceRequestable;
 
@@ -99,6 +100,14 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
     }
 
     public UnaryUpemResponse addMetaResource(String user, String password, int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public UnaryUpemResponse addMetaResource(String user, String password, MetaProperty meta) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public MetaProperty initialiseMeta(String user, String Password) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

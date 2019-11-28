@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface UpemServiceRequestable extends Remote{
     
-    int SEVER_ERROR = 1000;
+    int SERVER_ERROR = 1000;
     
         interface UpemResponse extends Remote{
             public int code() throws RemoteException;
@@ -36,8 +36,7 @@ public interface UpemServiceRequestable extends Remote{
 	UnaryUpemResponse tryToGetResource(String user, String password, boolean meta, int id, boolean addMe) throws RemoteException;
 	UnaryUpemResponse tryToGetBook(String user, String password, int id, boolean addMe) throws RemoteException;
 	UnaryUpemResponse tryToGetMeta(String user,String password, int id, boolean addMe) throws RemoteException;
-	
-	
+
 	UnaryUpemResponse removeMeQueueResource(String User, String password, boolean meta, int id) throws RemoteException;
 	UnaryUpemResponse removeMeQueueBook(String User, String password, int id) throws RemoteException;
 	UnaryUpemResponse removeMeQueueMeta(String User, String password, int id) throws RemoteException;
@@ -53,9 +52,7 @@ public interface UpemServiceRequestable extends Remote{
         
         UnaryUpemResponse addBook(String user, String password, BookProperty book ) throws RemoteException;
         BookProperty initialiseBook() throws RemoteException;
-        
-        
-        UnaryUpemResponse addMetaResource(String user, String password, int id) throws RemoteException;
-        
-        
+      
+        UnaryUpemResponse addMetaResource(String user, String password, MetaProperty meta) throws RemoteException;
+        MetaProperty initialiseMeta(String user, String Password) throws RemoteException;       
 }

@@ -72,7 +72,7 @@ public class DBOp {
         
     }
     
-    public void addBook(BookProperty book ) throws RemoteException, SQLException{
+    public void addBook(Book book ) throws RemoteException, SQLException{
         
         String year = book.getYear();
         String edition = book.getEdition();
@@ -124,7 +124,7 @@ public class DBOp {
 
         while(risQuery.next()){
             
-            SingleRow row = new SingleRow();
+            SingleRow row = new SingleRow(new HashMap<String,String>());
             
             if(meta){
                 row.put("id",risQuery.getString("id"));
@@ -166,8 +166,8 @@ public class DBOp {
     Il retourne les info d'un produit en donnent l'id
     @return string avec les info ou null s'il n'existe aucine produit avec l'id donné
     */
-    public Map<String,String> info(boolean meta, int id) throws SQLException{
-        
+    public UnaryUpemResponseImp info(boolean meta, int id) throws SQLException{
+        UnaryUpemResponseImp risp = new UnaryUpemResponseImp() {};
         Map<String,String> map = new HashMap<String,String>();
         
         Connection conn = connection();
@@ -203,17 +203,19 @@ public class DBOp {
                 map.put("state", risQ.getString("state"));
                 map.put("publisher", risQ.getString("publisher"));
             }
-            return map;
+            
+            risp.add(new SingleRow(map));
+            return risp;
         }
         return null;
         
     }
     
-    public Map<String,String> infoBook(int id) throws SQLException{
+    public UnaryUpemResponseImp infoBook(int id) throws SQLException{
         return info(false,id);
     }
     
-    public Map<String,String> infoMeta(int id) throws SQLException{
+    public UnaryUpemResponseImp infoMeta(int id) throws SQLException{
         return info(true,id);
     }
 }

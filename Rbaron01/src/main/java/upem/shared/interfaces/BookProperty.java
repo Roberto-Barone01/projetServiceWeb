@@ -17,14 +17,6 @@ public interface BookProperty extends Remote {
     BookProperty price(double price) throws RemoteException;
     BookProperty edition(String edition) throws RemoteException;
     
-    public String getTitle() throws RemoteException;
-    public String getPublisher() throws RemoteException;
-    public int getPages() throws RemoteException;
-    public String getIsbn() throws RemoteException;
-    public String getComment() throws RemoteException;
-    public String getState() throws RemoteException;
-    public double getPrice() throws RemoteException;
-    public String getEdition() throws RemoteException;
-    public String getYear() throws RemoteException;
+
 
 }
