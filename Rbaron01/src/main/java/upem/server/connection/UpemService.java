@@ -19,119 +19,175 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 		super();
 	}
 
-    public UpemResponse getResources(boolean meta) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UpemResponse getResources(boolean meta) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UpemResponse getAllBooks() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UpemResponse getAllBooks() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UpemResponse getAllMeta() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UpemResponse getAllMeta() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse getInfofResource(boolean meta, int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse getInfofResource(boolean meta, int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse getInfofBook(int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse getInfofBook(int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse getInfoOfMeta(int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse getInfoOfMeta(int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse tryToGetResource(String user, String password, boolean meta, int id, boolean addMe) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse tryToGetResource(String user, String password, boolean meta, int id, boolean addMe)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse tryToGetBook(String user, String password, int id, boolean addMe) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse tryToGetBook(String user, String password, int id, boolean addMe) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse tryToGetMeta(String user, String password, int id, boolean addMe) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse tryToGetMeta(String user, String password, int id, boolean addMe) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse removeMeQueueResource(String User, String password, boolean meta, int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse removeMeQueueResource(String User, String password, boolean meta, int id)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse removeMeQueueBook(String User, String password, int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse removeMeQueueBook(String User, String password, int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse removeMeQueueMeta(String User, String password, int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse removeMeQueueMeta(String User, String password, int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse showQueueResources(boolean meta, int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse showQueueResources(boolean meta, int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse showQueueBook(int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse showQueueBook(int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse showQueueMeta(int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse showQueueMeta(int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse removeResource(String user, String password, int id, boolean meta) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UpemResponse showMyQueues(String user, String password, boolean meta) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse removeBook(String user, String password, int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UpemResponse showMyQueuesBook(String user, String password) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse removeMeta(String user, String password, int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UpemResponse showMyQueuesMeta(String user, String password) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse addBook(String user, String password, BookProperty book) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UpemResponse showMyResouces(String user, String password, boolean meta) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public BookProperty initialiseBook() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UpemResponse showMyBooks(String user, String password) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse addMetaResource(String user, String password, int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UpemResponse showMyMetas(String user, String password) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UnaryUpemResponse addMetaResource(String user, String password, MetaProperty meta) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse removeResource(String user, String password, int id, boolean meta) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public MetaProperty initialiseMeta(String user, String Password) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse removeBook(String user, String password, int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UpemResponse showMyQueues(String user, String password, boolean meta) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse removeMeta(String user, String password, int id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UpemResponse showMyQueuesBook(String user, String password) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse addBook(String user, String password, BookProperty book) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UpemResponse showMyQueuesMeta(String user, String password) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public BookProperty initialiseBook() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UpemResponse showMyResouces(String user, String password, boolean meta) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public UnaryUpemResponse addMetaResource(String user, String password, MetaProperty meta) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UpemResponse showMyBooks(String user, String password) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public MetaProperty initialiseMeta(String user, String Password) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public UpemResponse showMyMetas(String user, String password) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
