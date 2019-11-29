@@ -15,24 +15,39 @@ import java.util.logging.Logger;
 import upem.shared.interfaces.BookProperty;
 import static upem.shared.interfaces.UpemServiceRequestable.ID_BOOK_MISSING;
 
-public class DBOp {
+public class DBOp implements QueryRequestable {
 		
     private final String nameDb="DBServiceWeb.db";
     private final String path="C:/sqlite/";
     //name driver
     private final String nameD="jdbc:sqlite:";
     
-    public Connection connection() throws SQLException{
+    
+    /* Il crée une connection avec la base de donnees
+     * @return l'objet qui rappresent la connection
+     * @throws @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+    
+    @Override
+	public Connection connection() throws SQLException{
         Connection conn = null;
         conn = DriverManager.getConnection(nameD+path+nameDb);
         return conn;
     }
     
-    public void stop(Connection conn) throws SQLException{
+    @Override
+	public void stop(Connection conn) throws SQLException{
         conn.close();
     }
     
-    public boolean test(){
+    
+    /* Il controle la connession avec la base de données.
+     * Il faut l'utiliser seulment pour des opération de debug.
+     * @param return true si la connection a eu succes, false au contraire
+     */
+    
+    @Override
+	public boolean test(){
         Connection c = null;
         try {
             c = connection();
@@ -50,13 +65,31 @@ public class DBOp {
     }
     
     
+    /* On retourne l'id dans la table user de l'user qui corrispondent à les parametres
+     * @param username de l'user
+     * @param password pour acceder à les service offert par l'UPEM
+     * @throws RemoteException
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
     
-    /* Il retourne la mot de passe de l'user 
-    @param id -> id user 
-    @return la mot de passe de l'user
+    
+    @Override
+	public int id_user(String user, String password) {
+    
+    	
+    	return 0;
+    }
+    
+    
+    
+    /* 
+    * Il retourne la mot de passe de l'user 
+    * @param id -> id user 
+    * @return la mot de passe de l'user
     */
     
-    public String password(int id) throws SQLException{
+    @Override
+	public String password(int id) throws SQLException{
         
         Connection conn = connection();
         
@@ -73,7 +106,16 @@ public class DBOp {
         
     }
     
-    public void addBook(Book book ) throws RemoteException, SQLException{
+    
+    /*
+     * Il ajoute un nouveau livre dans la table book
+     * @param le livre qu'on va ajouter
+     * @throws RemoteException
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+    
+    @Override
+	public void addBook(Book book, int id_user) throws SQLException{
         
         String year = book.getYear();
         String edition = book.getEdition();
@@ -108,8 +150,15 @@ public class DBOp {
         
     }
     
-    
-    public UpemResponseImp resources(boolean meta) throws SQLException{
+    /*
+     * Il retourne toue les données relative à la table meta_resource ou book
+     * @param flag qui dit si on veut la table book ou meta_resource (TRUE = meta_resource, FALSE = book)
+     * @throws RemoteException
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     * @return UpemResponse avec tout les donnees dans la table book ou meta_resource
+     */
+    @Override
+	public UpemResponseImp resources(boolean meta) throws SQLException{
         
         UpemResponseImp risp = new UpemResponseImp();
         
@@ -153,21 +202,41 @@ public class DBOp {
 
     }
     
-    public UpemResponseImp meta() throws SQLException{
+    /*
+     * Il retourne toue les données relative à la table meta_resource
+     * @throws RemoteException
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     * @return UpemResponse avec tout les donnees dans la table meta_resource
+     */
+    
+    @Override
+	public UpemResponseImp meta() throws SQLException{
         return resources(true);
     }
     
-    public UpemResponseImp books() throws SQLException{
+    /*
+     * Il retourne toue les données relative à la table meta_resource
+     * @throws RemoteException
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     * @return UpemResponse avec tout les donnees dans la table book
+     */
+    
+    @Override
+	public UpemResponseImp books() throws SQLException{
         return resources(false);
     }
     
     
     
     /*
-    Il retourne les info d'un produit en donnent l'id
-    @return string avec les info ou null s'il n'existe aucine produit avec l'id donn�
+    Il retourne tous les info d'un produit en donnent l'id
+    @param boolean meta, qui nous dit s'il faut chercher dans la table meta resource ou book (TRUE = meta_resource, FALSE = book)
+    @param id de la resource qu'on va chercher dans la table meta_resource ou book
+    @return UnaryUpemResponse avec les données qui consiste de tous les info dans la table book ou meta et les info sur l'user qui a ajouté la resource
+    et la date.
     */
-    public UnaryUpemResponseImp info(boolean meta, int id) throws SQLException{
+    @Override
+	public UnaryUpemResponseImp info_resource(boolean meta, int id) throws SQLException{
         UnaryUpemResponseImp risp = new UnaryUpemResponseImp() {};
         Map<String,String> map = new HashMap<String,String>();
         
@@ -215,15 +284,47 @@ public class DBOp {
         
     }
     
-    public UnaryUpemResponseImp infoBook(int id) throws SQLException{
-        return info(false,id);
+    /*
+    * Il retourne tous les info d'un book en donnent un id
+    * @param id de la resource qu'on va chercher dans la table  book
+    * @return UnaryUpemResponse avec les données qui consiste de tous les info dans la table book et les info sur l'user qui a ajouté la resource
+    * et la date.
+    * @throws RemoteException
+    * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+    */
+    
+    @Override
+	public UnaryUpemResponseImp infoBook(int id) throws SQLException{
+        return info_resource(false,id);
     }
     
-    public UnaryUpemResponseImp infoMeta(int id) throws SQLException{
-        return info(true,id);
+    
+    
+    /*
+    * Il retourne tous les info d'un meta_resource en donnent un id
+    * @param id de la resource qu'on va chercher dans la table  meta_resource
+    * @return UnaryUpemResponse avec les données qui consiste de tous les info dans la table meta_resource et les info sur l'user qui a ajouté la resource
+    * et la date.
+    * @throws RemoteException
+    * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+    */
+    
+    @Override
+	public UnaryUpemResponseImp infoMeta(int id) throws SQLException{
+        return info_resource(true,id);
     }
     
-    public boolean resource_served(int id, boolean meta) throws SQLException{
+    
+    /*
+     * Returne un boolean qui nous dit si la resource demandé n'est pas maintenent disponible
+     * @param id resource
+     * @param meta, qui nous dit si on va chercher la resource dans la table book ou meta_resource
+     * @throws RemoteException
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+    
+    @Override
+	public boolean resource_served(int id, boolean meta) throws SQLException{
         Connection conn = connection();
         
         String query = "";
@@ -251,11 +352,259 @@ public class DBOp {
         return ris;
     }
     
-    public boolean book_served(int id, boolean meta) throws SQLException{
+    
+    /*
+     * Returne un boolean qui nous dit si le book demandé n'est pas maintenant disponible
+     * @param id book
+     * @throws RemoteException
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+   
+    @Override
+	public boolean book_served(int id, boolean meta) throws SQLException{
         return resource_served(id, false);
     }
     
-    public boolean meta_served(int id, boolean meta) throws SQLException{
+    /*
+     * Retourne un boolean qui nous dit si le book demandé n'est pas maintenant disponible
+     * @param id book
+     * @throws RemoteException
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+    
+    @Override
+	public boolean meta_served(int id, boolean meta) throws SQLException{
         return resource_served(id, true);
     }
+    
+    /*
+     * On donne une resource à l'user qui corrisponde à id_user.
+     * On va ajouter l'user e la resource demandé dans la table user_request_book uo user_request_meta_resource
+     * avec status = reserved
+     * @param id de la resource
+     * @param flag qui nous dit si l'user ajoute un meta_resource ou book (TRUE = meta, FALSE = book)
+     * @param id user
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+    
+    @Override
+	public boolean reserve_resource_to_user(int id_resource, boolean meta, int id_user ) throws SQLException{
+    	return false;
+    }
+    
+    /*
+     * On donne une book à l'user qui corrisponde à id_user.
+     * On va ajouter l'user e la resource demandé dans la table user_request_book
+     * avec status = reserved
+     * @param id book dans la table book
+     * @param id user dans la table user
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+    
+	@Override
+	public boolean reserve_book_to_user(int id_book, int id_user ) throws SQLException{
+			return reserve_resource_to_user(id_book, false, id_user);
+	}
+	
+	/*
+     * On donne un meta_resource à l'user qui corrisponde à id_user.
+     * On va ajouter l'user e la resource demandé dans la table user_request_meta_resource
+     * avec status = reserved
+     * @param id book dans la table book
+     * @param id user dans la table user
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+	
+	@Override
+	public boolean reserve_meta_to_user(int id_meta, int id_user ) throws SQLException{
+		return reserve_resource_to_user(id_meta, true, id_user);
+	}
+	
+	/*
+     * On va ajouter l'user e la resource demandé dans la table user_request_book uo user_request_meta_resource
+     * avec status = Attend
+     * @param id de la resource
+     * @param flag qui nous dit si l'user ajoute un meta_resource ou book (TRUE = meta, FALSE = book)
+     * @param id user
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+    
+    @Override
+	public boolean add_user_to_queue(int id_resource, boolean meta, int id_user ) throws SQLException{
+    	return false;
+    	
+    }
+    
+    /*
+     * On va ajouter l'user e la resource demandé dans la table user_request_book
+     * avec status = Attend
+     * @param id book dans la table book
+     * @param id user dans la table user
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+    
+	@Override
+	public boolean add_user_to_queue_book(int id_book, int id_user ) throws SQLException{
+			return add_user_to_queue(id_book, false, id_user);
+			
+	}
+	
+	/*
+     * On va ajouter l'user e la resource demandé dans la table user_request_meta_resource
+     * avec status = Attend
+     * @param id meta dans la table meta_resource
+     * @param id user dans la table user
+     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+     */
+	
+	@Override
+	public boolean add_user_to_queu(int id_meta, int id_user ) throws SQLException{
+		return add_user_to_queue(id_meta, true, id_user);
+		
+	}
+
+	
+	/*
+	 * Il retourne tous les resource qui sont été demandé par l'user avec status attend
+	 * @param id user
+	 * @return UpemResponseImp qui contient tout le resource demandé par l'user
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+    
+	UpemResponseImp queue_user(int id) {
+		return null;
+	}
+	
+	/*
+	 * Il ajoute une nouvelle meta resource dans la table meta et 
+	 * l'information sur l'insertion dans user_add_meta_resource
+	 * @param Meta qu'on va ajouter
+	 * @param id user qui ajoute la meta resource
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+
+	@Override
+	public void addMeta(Meta meta, int id_user) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/*
+	 * On supprime la resource qui corrispond à l'id donné
+	 * @param id resource
+	 * @param flag qui nous dit si la resource est un meta ou book
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+
+	@Override
+	public boolean remove_resource(int id, boolean meta) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/*
+	 * On supprime le book qui corrispond à l'id donné
+	 * @param id resource
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+
+	@Override
+	public boolean remove_book(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/*
+	 * On supprime la meta_resource qui corrispond à l'id donné
+	 * @param id meta
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+
+	@Override
+	public boolean remove_meta_resource(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/*
+	 * On va supprimer par la queue la requeste de l'user s'il a status attend
+	 * @param id user
+	 * @param id_resource
+	 * @param flag qui nous dit si la resource est un meta ou book
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+
+	@Override
+	public boolean remove_from_queue(int id_user, int id_resource, boolean meta) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/*
+	 * On va supprimer par la queue la requeste de l'user s'il a status attend
+	 * @param id user
+	 * @param book
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+
+	@Override
+	public boolean remove_from_queue_book(int id_user, int id_book) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/*
+	 * On va supprimer par la queue la requeste de l'user s'il a status attend
+	 * @param id meta
+	 * @param book
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+
+	@Override
+	public boolean remove_from_queue_meta_resource(int id_user, int id_meta) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+	/*
+	 * Il retourne tous les resources qui l'user a ajouté
+	 * @param id user
+	 * @param flag qui nous dit si la resource est un meta ou book
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+	
+	@Override
+	public UpemResponseImp show_resource_add_by_user(int id_user, boolean meta) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/*
+	 * Il retourne tous les livres qui l'user a ajouté
+	 * @param id user
+	 * @param flag qui nous dit si la resource est un meta ou book
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+
+	@Override
+	public UpemResponseImp show_book_add_by_user(int id_user, boolean meta) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/*
+	 * Il retourne tous les meta_resource qui l'user a ajouté
+	 * @param id user
+	 * @param flag qui nous dit si la resource est un meta ou book
+	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
+	 */
+
+	@Override
+	public UpemResponseImp show_meta_resource_add_by_user(int id_user, boolean meta) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+    
 }

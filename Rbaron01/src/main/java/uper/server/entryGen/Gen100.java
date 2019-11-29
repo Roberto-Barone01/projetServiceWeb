@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import upem.server.connection.DBOp;
+import upem.server.connection.QueryRequestable;
 
 public class Gen100 {
     
@@ -23,7 +24,7 @@ public class Gen100 {
     
     public static void book() throws SQLException{
         Faker f = new Faker();
-        DBOp db = new DBOp();
+        QueryRequestable db = new DBOp();
         Connection conn = db.connection();
         
         String inser = "INSERT INTO book"
@@ -85,7 +86,7 @@ public class Gen100 {
     
     public static void metaResource() throws SQLException{
         Faker f = new Faker();
-        DBOp db = new DBOp();
+        QueryRequestable db = new DBOp();
         Connection conn = db.connection();
         
         String inser = "INSERT INTO meta_resource"
@@ -139,7 +140,7 @@ public class Gen100 {
     public static void user() throws SQLException{
         
         Faker f = new Faker();
-        DBOp db = new DBOp();
+        QueryRequestable db = new DBOp();
         Connection conn = db.connection();
             
         String type_1 = "student";

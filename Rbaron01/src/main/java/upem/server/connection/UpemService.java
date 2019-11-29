@@ -13,7 +13,7 @@ import upem.shared.interfaces.UpemServiceRequestable;
 
 public class UpemService extends UnicastRemoteObject implements UpemServiceRequestable{
 
-	private final DBOp dbop = new DBOp();
+	private final QueryRequestable dbop = new DBOp();
 	
 	UpemService() throws RemoteException{
 		super();
