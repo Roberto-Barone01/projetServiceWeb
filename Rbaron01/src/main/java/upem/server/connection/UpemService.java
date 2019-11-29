@@ -20,58 +20,107 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	}
 
 	@Override
-	public UpemResponse getResources(boolean meta) throws RemoteException {
-		// TODO Auto-generated method stub
+	public UpemResponse getResources(boolean meta) throws RemoteException, SQLException {
+		UpemResponseImp resp = new UpemResponseImp(); 
+		
+		if(meta) 
+			resp = dbop.meta();
+		else
+			resp = dbop.books();
+		
+		if(resp.result().size()>0)
+			resp.setCode(UpemServiceRequestable.NO_SUCH_RESOURCE);
+		else
+			resp.setCode(UpemServiceRequestable.REQUEST_OK);
+		
+		return resp;
+	}
+
+	@Override
+	public UpemResponse getAllBooks() throws RemoteException, SQLException {
+		return getResources(false);
+		
+	}
+
+	@Override
+	public UpemResponse getAllMeta() throws RemoteException, SQLException {
+		
+		return getResources(true);
+	}
+
+	@Override
+	public UnaryUpemResponse getInfofResource(boolean meta, int id) throws RemoteException, SQLException {
+		UnaryUpemResponseImp resp = new UnaryUpemResponseImp();
+		
+		resp = dbop.info_resource(meta, id);
+
+		if(resp.result() == null) 
+			resp.setCode(UpemServiceRequestable.NO_SUCH_RESOURCE);
+		else
+			resp.setCode(UpemServiceRequestable.REQUEST_OK);
+		
 		return null;
 	}
 
 	@Override
-	public UpemResponse getAllBooks() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public UnaryUpemResponse getInfofBook(int id) throws RemoteException, SQLException {
+		return getInfofResource(false, id);
 	}
 
 	@Override
-	public UpemResponse getAllMeta() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public UnaryUpemResponse getInfofResource(boolean meta, int id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public UnaryUpemResponse getInfofBook(int id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public UnaryUpemResponse getInfoOfMeta(int id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public UnaryUpemResponse getInfoOfMeta(int id) throws RemoteException, SQLException {
+		return getInfofResource(true, id);
 	}
 
 	@Override
 	public UnaryUpemResponse tryToGetResource(String user, String password, boolean meta, int id, boolean addMe)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+			throws RemoteException, SQLException {
+
+		int idUser = dbop.id_user(user);
+
+		if (idUser == 0)
+			return new UnaryUpemResponseImp(UpemServiceRequestable.NO_SUCH_USER);
+
+		String passFinded = dbop.password(idUser);
+
+		if (!password.equals(passFinded))
+			return new UnaryUpemResponseImp(UpemServiceRequestable.INCORRECT_PASSWORD);
+
+		if (meta) {
+			if (dbop.meta_served(id)) {
+				if (addMe) {
+					dbop.add_user_to_queue_meta(id, idUser);
+					return new UnaryUpemResponseImp(UpemServiceRequestable.ADD_TO_QUEUE);
+				} else
+					return new UnaryUpemResponseImp(UpemServiceRequestable.REQUEST_NOT_DISPONIBLE);
+			} else {
+				dbop.reserve_meta_to_user(id, idUser);
+				return new UnaryUpemResponseImp(UpemServiceRequestable.REQUEST_OK);
+			}
+		} else {
+			if (dbop.book_served(id)) {
+				if (addMe) {
+					dbop.add_user_to_queue_book(id, idUser);
+					return new UnaryUpemResponseImp(UpemServiceRequestable.ADD_TO_QUEUE);
+				} else
+					return new UnaryUpemResponseImp(UpemServiceRequestable.REQUEST_NOT_DISPONIBLE);
+			} else {
+				dbop.reserve_book_to_user(id, idUser);
+				return new UnaryUpemResponseImp(UpemServiceRequestable.REQUEST_OK);
+			}
+
+		}
+
 	}
 
 	@Override
-	public UnaryUpemResponse tryToGetBook(String user, String password, int id, boolean addMe) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public UnaryUpemResponse tryToGetBook(String user, String password, int id, boolean addMe) throws RemoteException, SQLException {
+		return tryToGetResource(user, password, false, id,addMe);
 	}
 
 	@Override
-	public UnaryUpemResponse tryToGetMeta(String user, String password, int id, boolean addMe) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public UnaryUpemResponse tryToGetMeta(String user, String password, int id, boolean addMe) throws RemoteException, SQLException {
+		return tryToGetResource(user, password, false, id,addMe);
 	}
 
 	@Override

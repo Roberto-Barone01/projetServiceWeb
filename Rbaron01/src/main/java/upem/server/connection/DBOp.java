@@ -74,7 +74,7 @@ public class DBOp implements QueryRequestable {
     
     
     @Override
-	public int id_user(String user, String password) {
+	public int id_user(String user) {
     
     	
     	return 0;
@@ -361,7 +361,7 @@ public class DBOp implements QueryRequestable {
      */
    
     @Override
-	public boolean book_served(int id, boolean meta) throws SQLException{
+	public boolean book_served(int id) throws SQLException{
         return resource_served(id, false);
     }
     
@@ -373,7 +373,7 @@ public class DBOp implements QueryRequestable {
      */
     
     @Override
-	public boolean meta_served(int id, boolean meta) throws SQLException{
+	public boolean meta_served(int id) throws SQLException{
         return resource_served(id, true);
     }
     
@@ -458,7 +458,7 @@ public class DBOp implements QueryRequestable {
      */
 	
 	@Override
-	public boolean add_user_to_queu(int id_meta, int id_user ) throws SQLException{
+	public boolean add_user_to_queue_meta(int id_meta, int id_user ) throws SQLException{
 		return add_user_to_queue(id_meta, true, id_user);
 		
 	}

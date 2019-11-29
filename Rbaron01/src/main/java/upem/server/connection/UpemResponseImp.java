@@ -21,6 +21,9 @@ public class UpemResponseImp implements UpemServiceRequestable.UpemResponse, Ser
         this.code = code;
     }
     
+    public void setCode(int code) {
+    	this.code = code;
+    }
     
     public int code() throws RemoteException {
         return code;

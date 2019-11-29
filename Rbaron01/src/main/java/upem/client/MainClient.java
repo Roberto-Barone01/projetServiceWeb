@@ -31,10 +31,10 @@ public class MainClient {
                 }
             }
             */
-            BookProperty book = req.initialiseBook();
-            book.title("Bella Cioa").publisher("No one").price(0).comment("Ciao");
-            req.addBook(null, null, book);
-            
+//            BookProperty book = req.initialiseBook();
+//            book.title("Bella Cioa").publisher("No one").price(0).comment("Ciao");
+//            req.addBook(null, null, book);
+//            
         
         
         } catch (NotBoundException ex) {
