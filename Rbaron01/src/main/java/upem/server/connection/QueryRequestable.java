@@ -18,7 +18,7 @@ public interface QueryRequestable {
 	void addBook(Book book, int id_user) throws SQLException;
 
 	/*
-	 * Il retourne toue les données relative à la table meta_resource ou book
+	 * Il retourne tous les données relative à la table meta_resource ou book
 	 * @param flag qui dit si on veut la table book ou meta_resource (TRUE = meta_resource, FALSE = book)
 	 * @throws RemoteException
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
