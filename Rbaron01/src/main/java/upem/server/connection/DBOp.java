@@ -28,6 +28,9 @@ public class DBOp implements QueryRequestable {
      * @throws @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#connection()
+	 */
     @Override
 	public Connection connection() throws SQLException{
         Connection conn = null;
@@ -35,6 +38,9 @@ public class DBOp implements QueryRequestable {
         return conn;
     }
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#stop(java.sql.Connection)
+	 */
     @Override
 	public void stop(Connection conn) throws SQLException{
         conn.close();
@@ -46,6 +52,9 @@ public class DBOp implements QueryRequestable {
      * @param return true si la connection a eu succes, false au contraire
      */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#test()
+	 */
     @Override
 	public boolean test(){
         Connection c = null;
@@ -73,6 +82,9 @@ public class DBOp implements QueryRequestable {
      */
     
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#id_user(java.lang.String)
+	 */
     @Override
 	public int id_user(String user) {
     
@@ -88,6 +100,9 @@ public class DBOp implements QueryRequestable {
     * @return la mot de passe de l'user
     */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#password(int)
+	 */
     @Override
 	public String password(int id) throws SQLException{
         
@@ -114,6 +129,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#addBook(upem.server.connection.Book, int)
+	 */
     @Override
 	public void addBook(Book book, int id_user) throws SQLException{
         
@@ -157,6 +175,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      * @return UpemResponse avec tout les donnees dans la table book ou meta_resource
      */
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#resources(boolean)
+	 */
     @Override
 	public UpemResponseImp resources(boolean meta) throws SQLException{
         
@@ -209,6 +230,9 @@ public class DBOp implements QueryRequestable {
      * @return UpemResponse avec tout les donnees dans la table meta_resource
      */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#meta()
+	 */
     @Override
 	public UpemResponseImp meta() throws SQLException{
         return resources(true);
@@ -221,6 +245,9 @@ public class DBOp implements QueryRequestable {
      * @return UpemResponse avec tout les donnees dans la table book
      */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#books()
+	 */
     @Override
 	public UpemResponseImp books() throws SQLException{
         return resources(false);
@@ -235,6 +262,9 @@ public class DBOp implements QueryRequestable {
     @return UnaryUpemResponse avec les données qui consiste de tous les info dans la table book ou meta et les info sur l'user qui a ajouté la resource
     et la date.
     */
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#info_resource(boolean, int)
+	 */
     @Override
 	public UnaryUpemResponseImp info_resource(boolean meta, int id) throws SQLException{
         UnaryUpemResponseImp risp = new UnaryUpemResponseImp() {};
@@ -293,6 +323,9 @@ public class DBOp implements QueryRequestable {
     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
     */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#infoBook(int)
+	 */
     @Override
 	public UnaryUpemResponseImp infoBook(int id) throws SQLException{
         return info_resource(false,id);
@@ -309,6 +342,9 @@ public class DBOp implements QueryRequestable {
     * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
     */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#infoMeta(int)
+	 */
     @Override
 	public UnaryUpemResponseImp infoMeta(int id) throws SQLException{
         return info_resource(true,id);
@@ -323,6 +359,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#resource_served(int, boolean)
+	 */
     @Override
 	public boolean resource_served(int id, boolean meta) throws SQLException{
         Connection conn = connection();
@@ -360,6 +399,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
    
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#book_served(int)
+	 */
     @Override
 	public boolean book_served(int id) throws SQLException{
         return resource_served(id, false);
@@ -372,6 +414,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#meta_served(int)
+	 */
     @Override
 	public boolean meta_served(int id) throws SQLException{
         return resource_served(id, true);
@@ -387,6 +432,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#reserve_resource_to_user(int, boolean, int)
+	 */
     @Override
 	public boolean reserve_resource_to_user(int id_resource, boolean meta, int id_user ) throws SQLException{
     	return false;
@@ -401,6 +449,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
     
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#reserve_book_to_user(int, int)
+	 */
 	@Override
 	public boolean reserve_book_to_user(int id_book, int id_user ) throws SQLException{
 			return reserve_resource_to_user(id_book, false, id_user);
@@ -415,6 +466,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
 	
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#reserve_meta_to_user(int, int)
+	 */
 	@Override
 	public boolean reserve_meta_to_user(int id_meta, int id_user ) throws SQLException{
 		return reserve_resource_to_user(id_meta, true, id_user);
@@ -429,6 +483,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
     
+    /* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#add_user_to_queue(int, boolean, int)
+	 */
     @Override
 	public boolean add_user_to_queue(int id_resource, boolean meta, int id_user ) throws SQLException{
     	return false;
@@ -443,6 +500,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
     
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#add_user_to_queue_book(int, int)
+	 */
 	@Override
 	public boolean add_user_to_queue_book(int id_book, int id_user ) throws SQLException{
 			return add_user_to_queue(id_book, false, id_user);
@@ -457,6 +517,9 @@ public class DBOp implements QueryRequestable {
      * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
      */
 	
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#add_user_to_queue_meta(int, int)
+	 */
 	@Override
 	public boolean add_user_to_queue_meta(int id_meta, int id_user ) throws SQLException{
 		return add_user_to_queue(id_meta, true, id_user);
@@ -483,6 +546,9 @@ public class DBOp implements QueryRequestable {
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
 	 */
 
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#addMeta(upem.server.connection.Meta, int)
+	 */
 	@Override
 	public void addMeta(Meta meta, int id_user) throws SQLException {
 		// TODO Auto-generated method stub
@@ -496,6 +562,9 @@ public class DBOp implements QueryRequestable {
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
 	 */
 
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#remove_resource(int, boolean)
+	 */
 	@Override
 	public boolean remove_resource(int id, boolean meta) throws SQLException {
 		// TODO Auto-generated method stub
@@ -508,6 +577,9 @@ public class DBOp implements QueryRequestable {
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
 	 */
 
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#remove_book(int)
+	 */
 	@Override
 	public boolean remove_book(int id) throws SQLException {
 		// TODO Auto-generated method stub
@@ -520,6 +592,9 @@ public class DBOp implements QueryRequestable {
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
 	 */
 
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#remove_meta_resource(int)
+	 */
 	@Override
 	public boolean remove_meta_resource(int id) throws SQLException {
 		// TODO Auto-generated method stub
@@ -534,6 +609,9 @@ public class DBOp implements QueryRequestable {
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
 	 */
 
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#remove_from_queue(int, int, boolean)
+	 */
 	@Override
 	public boolean remove_from_queue(int id_user, int id_resource, boolean meta) throws SQLException {
 		// TODO Auto-generated method stub
@@ -547,6 +625,9 @@ public class DBOp implements QueryRequestable {
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
 	 */
 
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#remove_from_queue_book(int, int)
+	 */
 	@Override
 	public boolean remove_from_queue_book(int id_user, int id_book) throws SQLException {
 		// TODO Auto-generated method stub
@@ -560,6 +641,9 @@ public class DBOp implements QueryRequestable {
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
 	 */
 
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#remove_from_queue_meta_resource(int, int)
+	 */
 	@Override
 	public boolean remove_from_queue_meta_resource(int id_user, int id_meta) throws SQLException {
 		// TODO Auto-generated method stub
@@ -574,6 +658,9 @@ public class DBOp implements QueryRequestable {
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
 	 */
 	
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#show_resource_add_by_user(int, boolean)
+	 */
 	@Override
 	public UpemResponseImp show_resource_add_by_user(int id_user, boolean meta) throws SQLException {
 		// TODO Auto-generated method stub
@@ -587,6 +674,9 @@ public class DBOp implements QueryRequestable {
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
 	 */
 
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#show_book_add_by_user(int, boolean)
+	 */
 	@Override
 	public UpemResponseImp show_book_add_by_user(int id_user, boolean meta) throws SQLException {
 		// TODO Auto-generated method stub
@@ -600,6 +690,9 @@ public class DBOp implements QueryRequestable {
 	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
 	 */
 
+	/* (non-Javadoc)
+	 * @see upem.server.connection.QueryRequestable#show_meta_resource_add_by_user(int, boolean)
+	 */
 	@Override
 	public UpemResponseImp show_meta_resource_add_by_user(int id_user, boolean meta) throws SQLException {
 		// TODO Auto-generated method stub
