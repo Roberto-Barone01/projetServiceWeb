@@ -1,5 +1,5 @@
 
-package uper.server.entryGen;
+package upem.server.entryGen;
 
 import com.github.javafaker.Faker;
 import java.sql.Connection;

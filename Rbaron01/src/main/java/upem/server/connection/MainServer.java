@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 
 import upem.server.connection.*;
-import uper.server.entryGen.Gen100;
+import upem.server.entryGen.Gen100;
 
 public class MainServer {
 
