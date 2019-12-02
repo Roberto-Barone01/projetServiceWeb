@@ -12,6 +12,10 @@ class UnaryUpemResponseImp implements UpemServiceRequestable.UnaryUpemResponse, 
     private int code;
     private SingleRow ris;
     
+    UnaryUpemResponseImp(){
+    	super();
+    }
+    
     UnaryUpemResponseImp(int code){
         this.code = code;
     }

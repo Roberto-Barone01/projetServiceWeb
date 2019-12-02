@@ -25,55 +25,55 @@ public class Book extends UnicastRemoteObject implements BookProperty {
     }
 
     @Override
-    public Book title(String title) throws RemoteException {
+    public BookProperty title(String title) throws RemoteException {
         this.title = title;
         return this;
     }
 
     @Override
-    public Book publisher(String publisher) throws RemoteException {
+    public BookProperty publisher(String publisher) throws RemoteException {
         this.publisher = publisher;
         return this;
     }
 
 
     @Override
-    public Book pages(int pages) throws RemoteException {
+    public BookProperty pages(int pages) throws RemoteException {
         this.pages = pages;
         return this;
     }
 
     @Override
-    public Book isbn(String isbn) throws RemoteException {
+    public BookProperty isbn(String isbn) throws RemoteException {
         this.isbn = isbn;
         return this;
     }
 
     @Override
-    public Book comment(String comment) throws RemoteException {
+    public BookProperty comment(String comment) throws RemoteException {
         this.comment = comment;
         return this;
     }
     
     @Override
-    public Book state(String state) throws RemoteException {
+    public BookProperty state(String state) throws RemoteException {
         this.state = state;
         return this;
     }
 
     @Override
-    public Book price(double price) throws RemoteException {
+    public BookProperty price(double price) throws RemoteException {
         this.price = price;
         return this;
     }
     
     @Override
-    public Book edition(String edition) throws RemoteException{
+    public BookProperty edition(String edition) throws RemoteException{
         this.edition = edition;
         return this;
     }
     
-    public Book year(String year){
+    public BookProperty year(String year){
         this.year = year;
         return this;
     }

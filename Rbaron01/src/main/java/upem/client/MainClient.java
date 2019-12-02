@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +37,18 @@ public class MainClient {
 //            req.addBook(null, null, book);
 //            
         
+            
+           BookProperty book;
+		try {
+			book = req.initialiseBook();
+			book.title("the lord of the rings").comment("Bello").edition("press").price(56);
+			req.addBook("", "", book);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+           
         
         } catch (NotBoundException ex) {
             Logger.getLogger(MainClient.class.getName()).log(Level.SEVERE, null, ex);

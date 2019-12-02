@@ -222,8 +222,7 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 
 	@Override
 	public BookProperty initialiseBook() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Book();
 	}
 
 	@Override
@@ -235,7 +234,7 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	@Override
 	public MetaProperty initialiseMeta(String user, String Password) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return new Meta();
 	}
 
     
