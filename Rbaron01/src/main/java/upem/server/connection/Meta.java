@@ -6,8 +6,6 @@ import java.rmi.server.UnicastRemoteObject;
 import upem.shared.interfaces.MetaProperty;
 
 public class Meta extends UnicastRemoteObject implements MetaProperty {
-    
-    
     String meta_type;
     String meta_name;
     String state;
@@ -43,4 +41,28 @@ public class Meta extends UnicastRemoteObject implements MetaProperty {
         return this;
     }
 
+	@Override
+	public String getMetaType() throws RemoteException {
+		return this.meta_type;
+	}
+
+	@Override
+	public String getMetaName() throws RemoteException {
+		return this.meta_name;
+	}
+
+	@Override
+	public String getState() throws RemoteException {
+		return this.state;
+	}
+
+	@Override
+	public String getComment() throws RemoteException {
+		return this.comment;
+	}
+
+	@Override
+	public double getPrice() throws RemoteException {
+		return this.price;
+	}
 }

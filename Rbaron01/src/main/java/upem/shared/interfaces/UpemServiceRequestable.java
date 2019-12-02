@@ -47,27 +47,21 @@ public interface UpemServiceRequestable extends Remote {
 	UnaryUpemResponse tryToGetResource(String user, String password, boolean meta, int id, boolean addMe)
 			throws RemoteException, SQLException;
 
-	UnaryUpemResponse tryToGetBook(String user, String password, int id, boolean addMe) throws RemoteException, SQLException;
+	UnaryUpemResponse tryToGetBook(String user, String password, int id_book, boolean addMe) throws RemoteException, SQLException;
 
-	UnaryUpemResponse tryToGetMeta(String user, String password, int id, boolean addMe) throws RemoteException, SQLException;
+	UnaryUpemResponse tryToGetMeta(String user, String password, int id_meta, boolean addMe) throws RemoteException, SQLException;
 
-	UnaryUpemResponse removeMeQueueResource(String User, String password, boolean meta, int id) throws RemoteException, SQLException;
+	UnaryUpemResponse removeMeQueueBook(String User, String password, int id_book) throws RemoteException, SQLException;
 
-	UnaryUpemResponse removeMeQueueBook(String User, String password, int id) throws RemoteException, SQLException;
+	UnaryUpemResponse removeMeQueueMeta(String User, String password, int id_meta) throws RemoteException, SQLException;
 
-	UnaryUpemResponse removeMeQueueMeta(String User, String password, int id) throws RemoteException, SQLException;
+	UpemResponse showQueueResources(boolean meta, int id) throws RemoteException, SQLException;
 
-	UnaryUpemResponse showQueueResources(boolean meta, int id) throws RemoteException, SQLException;
+	UpemResponse showQueueBook(int id) throws RemoteException, SQLException;
 
-	UnaryUpemResponse showQueueBook(int id) throws RemoteException, SQLException;
+	UpemResponse showQueueMeta(int id) throws RemoteException, SQLException;
 
-	UnaryUpemResponse showQueueMeta(int id) throws RemoteException, SQLException;
-
-	UpemResponse showMyQueues(String user, String password, boolean meta) throws RemoteException, SQLException;
-
-	UpemResponse showMyQueuesBook(String user, String password) throws RemoteException, SQLException;
-
-	UpemResponse showMyQueuesMeta(String user, String password) throws RemoteException, SQLException;
+	UpemResponse showMyQueues(String user, String password) throws RemoteException, SQLException;
 
 	UpemResponse showMyResouces(String user, String password, boolean meta) throws RemoteException, SQLException;
 

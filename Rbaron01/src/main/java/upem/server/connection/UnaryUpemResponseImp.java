@@ -35,5 +35,9 @@ class UnaryUpemResponseImp implements UpemServiceRequestable.UnaryUpemResponse, 
 	public void setCode(int code) {
 		this.code = code;
 	}
+	
+	public String toString() {
+		return ""+code;
+	}
 
 }

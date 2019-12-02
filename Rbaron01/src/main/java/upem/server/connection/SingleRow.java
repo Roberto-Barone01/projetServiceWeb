@@ -14,12 +14,20 @@ public class SingleRow implements Serializable, UpemServiceRequestable.SingleRow
         this.map = map;
     }
 
-    void put(String k, String a){
+    public SingleRow() {
+		this.map = new HashMap<>();
+	}
+
+	void put(String k, String a){
         map.put(k, a);
     }
     
     public Map<String,String> get(){
         return this.map;
+    }
+    
+    public String toString() {
+    	return map.toString();
     }
     
 }

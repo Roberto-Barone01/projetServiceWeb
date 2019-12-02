@@ -1,7 +1,11 @@
 package upem.server.connection;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import upem.shared.interfaces.BookProperty;
+import upem.shared.interfaces.MetaProperty;
 
 public interface QueryRequestable {
 
@@ -15,7 +19,7 @@ public interface QueryRequestable {
 
 	String password(int id) throws SQLException;
 
-	void addBook(Book book, int id_user) throws SQLException;
+	void addBook(BookProperty book, int id_user) throws SQLException, RemoteException;
 
 	UpemResponseImp resources(boolean meta) throws SQLException;
 
@@ -47,7 +51,7 @@ public interface QueryRequestable {
 
 	boolean add_user_to_queue_meta(int id_meta, int id_user) throws SQLException;
 
-	void addMeta(Meta meta, int id_user) throws SQLException;
+	void addMeta(MetaProperty meta, int id_user) throws SQLException, RemoteException;
 
 	void remove_resource(int id, boolean meta) throws SQLException;
 
@@ -55,16 +59,27 @@ public interface QueryRequestable {
 
 	void remove_meta_resource(int id) throws SQLException;
 
-	boolean remove_from_queue(int id_user, int id_resource, boolean meta) throws SQLException;
+	void remove_from_queue(int id_user, int id_resource, boolean meta) throws SQLException;
 
-	boolean remove_from_queue_book(int id_user, int id_book) throws SQLException;
+	void remove_from_queue_book(int id_user, int id_book) throws SQLException;
 
-	boolean remove_from_queue_meta_resource(int id_user, int id_meta) throws SQLException;
+	void remove_from_queue_meta_resource(int id_user, int id_meta) throws SQLException;
 
 	UpemResponseImp show_resource_add_by_user(int id_user, boolean meta) throws SQLException;
 
-	UpemResponseImp show_book_add_by_user(int id_user, boolean meta) throws SQLException;
+	UpemResponseImp show_book_add_by_user(int id_user) throws SQLException;
 
-	UpemResponseImp show_meta_resource_add_by_user(int id_user, boolean meta) throws SQLException;
+	UpemResponseImp show_meta_resource_add_by_user(int id_user) throws SQLException;
+	
+	UpemResponseImp show_queue_of_resource(boolean meta, int id_resource) throws SQLException;
+	
+	UpemResponseImp show_queue_of_book(int id_book) throws SQLException;
 
+	UpemResponseImp show_queue_of_meta(int id_meta) throws SQLException;
+	
+	void add_complete_status_request(int id_user,int id_resource, boolean meta) throws SQLException;
+	
+	UpemResponseImp show_all_queue_user(int id_user) throws SQLException;
+
+	
 }

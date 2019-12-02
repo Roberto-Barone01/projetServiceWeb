@@ -11,4 +11,12 @@ public interface MetaProperty extends Remote{
     MetaProperty state(String state) throws RemoteException;
     MetaProperty comment(String comment) throws RemoteException;
     MetaProperty price(double price) throws RemoteException;
+    
+    String getMetaType() throws RemoteException;
+    String getMetaName() throws RemoteException;
+    String getState() throws RemoteException;
+    String getComment() throws RemoteException;
+    double getPrice() throws RemoteException;
+    
+    
 }
