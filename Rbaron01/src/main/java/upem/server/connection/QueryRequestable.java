@@ -11,32 +11,18 @@ public interface QueryRequestable {
 
 	boolean test();
 
-	int id_user(String user);
+	int id_user(String user) throws SQLException;
 
 	String password(int id) throws SQLException;
 
 	void addBook(Book book, int id_user) throws SQLException;
 
-	/*
-	 * Il retourne tous les données relative à la table meta_resource ou book
-	 * @param flag qui dit si on veut la table book ou meta_resource (TRUE = meta_resource, FALSE = book)
-	 * @throws RemoteException
-	 * @throws SQLExcepion s'il y a des erreur au moment qu'on nous va connecter avec le db
-	 * @return UpemResponse avec tout les donnees dans la table book ou meta_resource
-	 */
 	UpemResponseImp resources(boolean meta) throws SQLException;
 
 	UpemResponseImp meta() throws SQLException;
 
 	UpemResponseImp books() throws SQLException;
 
-	/*
-	Il retourne tous les info d'un produit en donnent l'id
-	@param boolean meta, qui nous dit s'il faut chercher dans la table meta resource ou book (TRUE = meta_resource, FALSE = book)
-	@param id de la resource qu'on va chercher dans la table meta_resource ou book
-	@return UnaryUpemResponse avec les données qui consiste de tous les info dans la table book ou meta et les info sur l'user qui a ajouté la resource
-	et la date.
-	*/
 	UnaryUpemResponseImp info_resource(boolean meta, int id) throws SQLException;
 
 	UnaryUpemResponseImp infoBook(int id) throws SQLException;
@@ -63,11 +49,11 @@ public interface QueryRequestable {
 
 	void addMeta(Meta meta, int id_user) throws SQLException;
 
-	boolean remove_resource(int id, boolean meta) throws SQLException;
+	void remove_resource(int id, boolean meta) throws SQLException;
 
-	boolean remove_book(int id) throws SQLException;
+	void remove_book(int id) throws SQLException;
 
-	boolean remove_meta_resource(int id) throws SQLException;
+	void remove_meta_resource(int id) throws SQLException;
 
 	boolean remove_from_queue(int id_user, int id_resource, boolean meta) throws SQLException;
 

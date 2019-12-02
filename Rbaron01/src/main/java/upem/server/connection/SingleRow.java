@@ -14,7 +14,6 @@ public class SingleRow implements Serializable, UpemServiceRequestable.SingleRow
         this.map = map;
     }
 
-    
     void put(String k, String a){
         map.put(k, a);
     }

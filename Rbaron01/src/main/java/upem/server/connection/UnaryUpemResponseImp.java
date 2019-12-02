@@ -12,15 +12,9 @@ class UnaryUpemResponseImp implements UpemServiceRequestable.UnaryUpemResponse, 
     private int code;
     private SingleRow ris;
     
-    
-    UnaryUpemResponseImp(){
-        // do nothing
-    }
-    
     UnaryUpemResponseImp(int code){
         this.code = code;
     }
-    
     
     public int code() throws RemoteException {
         return this.code;

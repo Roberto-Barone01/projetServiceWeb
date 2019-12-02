@@ -10,11 +10,11 @@ import upem.shared.interfaces.UpemServiceRequestable;
 public class UpemResponseImp implements UpemServiceRequestable.UpemResponse, Serializable {
 
     private int code;
-    ArrayList<UpemServiceRequestable.SingleRow> ris = new ArrayList<UpemServiceRequestable.SingleRow>();
+    ArrayList<UpemServiceRequestable.SingleRow> ris;
     
     
     UpemResponseImp(){
-        // do nothing
+        this.ris = new ArrayList<UpemServiceRequestable.SingleRow>();
     }
     
     UpemResponseImp(int code){
