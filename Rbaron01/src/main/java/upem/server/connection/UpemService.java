@@ -28,7 +28,7 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 		else
 			resp = dbop.books();
 		
-		if(resp.result().size()>0)
+		if(resp.result().size() == 0)
 			resp.setCode(UpemServiceRequestable.NO_SUCH_RESOURCE);
 		else
 			resp.setCode(UpemServiceRequestable.REQUEST_OK);
@@ -124,20 +124,20 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	}
 
 	@Override
-	public UnaryUpemResponse removeMeQueueResource(String User, String password, boolean meta, int id)
+	public UnaryUpemResponse removeMeQueueResource(String User, String password, boolean meta, int id_resource)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public UnaryUpemResponse removeMeQueueBook(String User, String password, int id) throws RemoteException {
+	public UnaryUpemResponse removeMeQueueBook(String User, String password, int id_book) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public UnaryUpemResponse removeMeQueueMeta(String User, String password, int id) throws RemoteException {
+	public UnaryUpemResponse removeMeQueueMeta(String User, String password, int id_book) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
