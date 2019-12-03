@@ -59,25 +59,6 @@ public class Gen100 {
             
             stm.executeUpdate();
             
-            String query = " select MAX(id) AS max FROM book";
-            Statement stmQ = conn.createStatement();
-            ResultSet ris = stmQ.executeQuery(query);
-            ris.next();
-            int idBook = ris.getInt("max");
-            
-            String queryUser = "SELECT id FROM BOOK ORDER BY RANDOM() LIMIT 1";
-            Statement stmQuser = conn.createStatement();
-            ResultSet risuser = stmQuser.executeQuery(queryUser);
-            risuser.next();
-            int idUser = risuser.getInt("id");
-            
-            String queryInserAddBook = " INSERT INTO user_add_book(id_user,id_book)"
-                    + "VALUES(?,?)";
-            PreparedStatement stmAddBook = conn.prepareStatement(queryInserAddBook);
-            stmAddBook.setInt(1, idUser);
-            stmAddBook.setInt(2,idBook);
-            
-            stmAddBook.executeUpdate();
             
         }
         
@@ -113,25 +94,6 @@ public class Gen100 {
             
             stm.executeUpdate();
             
-            String query = " select MAX(id) AS max FROM meta_resource";
-            Statement stmQ = conn.createStatement();
-            ResultSet ris = stmQ.executeQuery(query);
-            ris.next();
-            int idMeta = ris.getInt("max");
-            
-            String queryUser = "SELECT id FROM BOOK ORDER BY RANDOM() LIMIT 1";
-            Statement stmQuser = conn.createStatement();
-            ResultSet risuser = stmQuser.executeQuery(queryUser);
-            risuser.next();
-            int idUser = risuser.getInt("id");
-            
-            String queryInserAddBook = " INSERT INTO user_add_meta_resource(id_user,id_meta_resource)"
-                    + "VALUES(?,?)";
-            PreparedStatement stmAddBook = conn.prepareStatement(queryInserAddBook);
-            stmAddBook.setInt(1, idUser);
-            stmAddBook.setInt(2,idMeta);
-            
-            stmAddBook.executeUpdate();
             
         }
         
