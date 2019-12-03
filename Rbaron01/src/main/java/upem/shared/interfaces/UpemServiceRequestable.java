@@ -82,4 +82,10 @@ public interface UpemServiceRequestable extends Remote {
 	UnaryUpemResponse addMetaResource(String user, String password, MetaProperty meta) throws RemoteException, SQLException;
 
 	MetaProperty initialiseMeta(String user, String Password) throws RemoteException, SQLException;
+	
+	UnaryUpemResponse return_resource(String user, String password, int id_resource, boolean meta) throws RemoteException, SQLException;
+	
+	UnaryUpemResponse return_book(String user, String password, int id_resource) throws RemoteException, SQLException;
+	
+	UnaryUpemResponse return_meta(String user, String password, int id_resource) throws RemoteException, SQLException;
 }

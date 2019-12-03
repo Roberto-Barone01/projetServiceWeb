@@ -302,5 +302,34 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	@Override
 	public MetaProperty initialiseMeta(String user, String Password) throws RemoteException {
 		return new Meta();
+	}
+
+	@Override
+	public UnaryUpemResponse return_resource(String user, String password, int id_resource, boolean meta)
+			throws RemoteException, SQLException {
+	
+		int idUser = dbop.id_user(user);
+
+		if (idUser == -1)
+			return new UnaryUpemResponseImp(UpemServiceRequestable.NO_SUCH_USER);
+		String passFinded = dbop.password(idUser);
+		if (!password.equals(passFinded))
+			return new UnaryUpemResponseImp(UpemServiceRequestable.INCORRECT_PASSWORD);
+		
+		dbop.add_complete_status_request(idUser, id_resource, meta);
+		return new UnaryUpemResponseImp(UpemServiceRequestable.REQUEST_OK);
+		
+	}
+
+	@Override
+	public UnaryUpemResponse return_book(String user, String password, int id_resource)
+			throws RemoteException, SQLException {
+		return return_resource(user, password, id_resource, false);
+	}
+
+	@Override
+	public UnaryUpemResponse return_meta(String user, String password, int id_resource)
+			throws RemoteException, SQLException {
+		return return_resource(user, password, id_resource, true);
 	}    
 }
