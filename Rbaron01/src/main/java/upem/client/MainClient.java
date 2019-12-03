@@ -1,6 +1,5 @@
 
 package upem.client;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -14,6 +13,12 @@ import upem.shared.interfaces.UpemServiceRequestable;
 import upem.shared.interfaces.UpemServiceRequestable.SingleRow;
 import upem.shared.interfaces.UpemServiceRequestable.UpemResponse;
 import upem.shared.interfaces.UpemServiceRequestable.UnaryUpemResponse;
+import org.w3c.dom.*;
+import javax.xml.parsers.*;
+import java.io.*;
+
+
+
 public class MainClient {
     
     
