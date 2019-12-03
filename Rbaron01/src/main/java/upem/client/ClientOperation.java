@@ -34,7 +34,7 @@ public class ClientOperation {
 			
 			try {
 				user = new HashMap<String,String>();
-				File inputFile = new File("/home/2inlp2/rbaron01/git/projetServiceWeb/Rbaron01/src/main/resources/user.xml");
+				File inputFile = new File("/home/2inlp2/rbaron01/git/projetRMI/Rbaron01/src/main/resources/user.xml");
 		        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		        Document doc = dBuilder.parse(inputFile);
