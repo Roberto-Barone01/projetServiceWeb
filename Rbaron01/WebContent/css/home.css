@@ -14,6 +14,7 @@ body{
 	height: 100%;
 	background-color: #222222;
 	font-family: 'Open Sans', sans-serif;
+	color: #b48608;
 }
 
 a{
@@ -38,11 +39,12 @@ a{
 	flex-flow: column;
 	item-align: space-between;
 	justify-content: space-between;
+	
 }
 
 .flex-item{
 	
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid #b48608;
 	display:flex;
 	item-align: center;
 	justify-content: center;
@@ -50,12 +52,11 @@ a{
 	padding: 20px;
 	transition: all 1s;
 	cursor: grab;
-	
 }
 
 .flex-item:hover{
-	border-top: 1px solid black;
-	border-right: 1px solid black;
+	border-top: 1px solid #b48608;
+	border-right: 1px solid #b48608;
 	letter-spacing: 2px;
-	
 }
+

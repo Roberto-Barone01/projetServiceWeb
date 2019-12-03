@@ -11,7 +11,9 @@
 </head>
 <body>
 <jsp:include page='/header.jsp'></jsp:include>
-<h1 align="center"> Mes opérations</h1>
+<div class="cornice">
+	<h1 align="center" > Mes opérations</h1>
+</div>
 <div class="flex-container">
 	<div class="flex-list">
 		<div class="flex-item"><a  href="books.jsp"> show all books</a> </div>
