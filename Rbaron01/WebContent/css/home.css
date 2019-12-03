@@ -1,0 +1,61 @@
+@charset "ISO-8859-1";
+
+
+html{
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	padding: 0;
+	margin: 0;
+	color: snow;
+	width: 100%;
+	height: 100%;
+	background-color: #222222;
+	font-family: 'Open Sans', sans-serif;
+}
+
+a{
+	color: inherit;
+	text-decoration: none;
+}
+
+
+.flex-container{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	item-align: center;
+}
+
+.flex-list{
+	display:flex;
+	width: 100%;
+	min-height: 100px;
+	max-width: 350px;
+	flex-flow: column;
+	item-align: space-between;
+	justify-content: space-between;
+}
+
+.flex-item{
+	
+	border-bottom: 2px solid black;
+	display:flex;
+	item-align: center;
+	justify-content: center;
+	text-transform: uppercase;
+	padding: 20px;
+	transition: all 1s;
+	cursor: grab;
+	
+}
+
+.flex-item:hover{
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	letter-spacing: 2px;
+	
+}
