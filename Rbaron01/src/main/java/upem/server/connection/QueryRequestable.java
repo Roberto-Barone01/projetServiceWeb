@@ -3,6 +3,7 @@ package upem.server.connection;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import upem.shared.interfaces.BookProperty;
 import upem.shared.interfaces.MetaProperty;
@@ -77,9 +78,25 @@ public interface QueryRequestable {
 
 	UpemResponseImp show_queue_of_meta(int id_meta) throws SQLException;
 	
+	// Se il libro è richiesto da altri deve anche assegnarlo ad altri //
 	void add_complete_status_request(int id_user,int id_resource, boolean meta) throws SQLException;
 	
 	UpemResponseImp show_all_queue_user(int id_user) throws SQLException;
-
 	
+	
+	/* CLIENTS OPERATION */
+	
+	String password_client(String user) throws Exception;
+	
+	String client_book() throws SQLException;
+	
+	boolean client_can_purchase_this(int id_book) throws SQLException;
+	
+	void add_to_basket(int id_book, int id_client) throws SQLException;
+
+	void achete_book(int id_book) throws SQLException;
+	
+	String id_client(String user) throws SQLException;
+	
+	ArrayList<Integer> basket_user (int id_client) throws SQLException;
 }
