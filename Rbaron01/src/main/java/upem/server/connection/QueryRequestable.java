@@ -83,10 +83,12 @@ public interface QueryRequestable {
 	
 	UpemResponseImp show_all_queue_user(int id_user) throws SQLException;
 	
+
+	int candidateForResource(int id_resource, boolean meta) throws SQLException;
 	
 	/* CLIENTS OPERATION */
 	
-	String password_client(String user) throws Exception;
+	String password_client(String user) throws SQLException;
 	
 	String client_book() throws SQLException;
 	
@@ -99,4 +101,5 @@ public interface QueryRequestable {
 	String id_client(String user) throws SQLException;
 	
 	ArrayList<Integer> basket_user (int id_client) throws SQLException;
+
 }

@@ -1,0 +1,27 @@
+@charset "ISO-8859-1";
+
+.flex-conteiner{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.flex-item{
+	padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.flex-item input{
+	margin-left: 40px;
+}
+
+input{
+	padding: 10px 20px;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+
+.submit{
+	width: 100%;
+}

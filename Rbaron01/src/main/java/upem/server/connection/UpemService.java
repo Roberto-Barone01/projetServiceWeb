@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Banca.Bank;
 import upem.shared.interfaces.BookProperty;
 import upem.shared.interfaces.MetaProperty;
 
@@ -221,7 +223,7 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 			risp = dbop.show_book_add_by_user(idUser);
 		risp.setCode(UpemServiceRequestable.REQUEST_OK);
 		
-		return null;
+		return risp;
 		
 	}
 
@@ -300,7 +302,7 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	}
 
 	@Override
-	public MetaProperty initialiseMeta(String user, String Password) throws RemoteException {
+	public MetaProperty initialiseMeta() throws RemoteException {
 		return new Meta();
 	}
 
@@ -317,6 +319,11 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 			return new UnaryUpemResponseImp(UpemServiceRequestable.INCORRECT_PASSWORD);
 		
 		dbop.add_complete_status_request(idUser, id_resource, meta);
+		
+		idUser = dbop.candidateForResource(id_resource, meta);
+		if(idUser != -1)
+			dbop.reserve_resource_to_user(id_resource, meta, idUser);
+		
 		return new UnaryUpemResponseImp(UpemServiceRequestable.REQUEST_OK);
 		
 	}
@@ -331,5 +338,50 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	public UnaryUpemResponse return_meta(String user, String password, int id_resource)
 			throws RemoteException, SQLException {
 		return return_resource(user, password, id_resource, true);
+	}
+
+	@Override
+	public String book_client() throws RemoteException, SQLException {
+		return dbop.client_book();
+	}
+
+	@Override
+	public String add_to_panier(String client, String password, int id_book) throws SQLException {
+		
+		String risPass = dbop.password_client(client);
+		
+		if(! password.equals(risPass)) 
+			return "Password sbagliata";
+			
+		if(!dbop.client_can_purchase_this(id_book))
+			return " non puoi acquistare questo libro";
+		
+		int id_client = Integer.parseInt(dbop.id_client(client));
+		
+		dbop.add_to_basket(id_book, id_client);
+		
+		return "Aggiunto";
+		
+	}
+
+	@Override
+	public String buy(String client, String password, double money) throws RemoteException, SQLException {
+String risPass = dbop.password_client(client);
+		
+		if(! password.equals(risPass)) 
+			return "Password sbagliata";
+			
+		Bank bank = new Bank();
+		if(!bank.canPurchase(money))
+			return "Non hai abbastanza soldi";
+		
+		int id_client = Integer.parseInt(dbop.id_client(client));
+		
+		ArrayList<Integer> list = dbop.basket_user(id_client);
+		for(int i=0;i<list.size();i++)
+			dbop.achete_book(list.get(i));
+		
+		
+		return "Acquisti effettuati";
 	}    
 }

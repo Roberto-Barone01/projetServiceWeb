@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServiceService WSDL service -->
+
+  <service name="Service" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://GESellService"/>
+      <parameter name="wsdlServiceElement" value="ServiceService"/>
+      <parameter name="schemaQualified" value="http://GESellService"/>
+      <parameter name="wsdlServicePort" value="Service"/>
+      <parameter name="className" value="GESellService.Service"/>
+      <parameter name="wsdlPortType" value="Service"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://GESellService" xmlns:retNS="http://GESellService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="showBook" qname="operNS:showBook" returnQName="retNS:showBookReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://GESellService" xmlns:retNS="http://GESellService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="buy" qname="operNS:buy" returnQName="retNS:buyReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://GESellService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
+        <parameter xmlns:pns="http://GESellService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
+        <parameter xmlns:pns="http://GESellService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:money" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://GESellService" xmlns:retNS="http://GESellService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="testConnection" qname="operNS:testConnection" returnQName="retNS:testConnectionReturn" returnType="rtns:boolean" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://GESellService" xmlns:retNS="http://GESellService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addBasket" qname="operNS:addBasket" returnQName="retNS:addBasketReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://GESellService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
+        <parameter xmlns:pns="http://GESellService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
+        <parameter xmlns:pns="http://GESellService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id_book" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="showBook testConnection buy addBasket"/>
+
+  </service>
+</deployment>

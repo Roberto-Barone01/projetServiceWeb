@@ -16,13 +16,13 @@
 </div>
 <div class="flex-container">
 	<div class="flex-list">
-		<div class="flex-item"><a  href="books.jsp"> show all books</a> </div>
-		<div class="flex-item"> show all meta resource</div>
-		<div class="flex-item"> show my resources</div>
+		<div class="flex-item"><a href="books.jsp"> show all books</a> </div>
+		<div class="flex-item"><a href='meta.jsp'> show all meta resource</a></div>
+		<div class="flex-item"><a href="UserResource.jsp">my resources</a></div>
 		<div class="flex-item"> show my queue</div>
 		<div class="flex-item"> Objets empruntés</div>
-		<div class="flex-item"> Add book</div>
-		<div class="flex-item"> Add meta</div>
+		<div class="flex-item"><a href='addBook.jsp'> Add book</a></div>
+		<div class="flex-item"> <a href='addMeta.jsp'>Add meta</a></div>
 	</div>
 </div>
 </body>

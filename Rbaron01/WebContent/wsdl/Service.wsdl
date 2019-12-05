@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://GESellService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://GESellService" xmlns:intf="http://GESellService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://GESellService" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="showBook">
+    <complexType/>
+   </element>
+   <element name="showBookResponse">
+    <complexType>
+     <sequence>
+      <element name="showBookReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buy">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="money" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buyResponse">
+    <complexType>
+     <sequence>
+      <element name="buyReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="testConnection">
+    <complexType/>
+   </element>
+   <element name="testConnectionResponse">
+    <complexType>
+     <sequence>
+      <element name="testConnectionReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addBasket">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="id_book" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addBasketResponse">
+    <complexType>
+     <sequence>
+      <element name="addBasketReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="testConnectionResponse">
+
+      <wsdl:part element="impl:testConnectionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBasketRequest">
+
+      <wsdl:part element="impl:addBasket" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBasketResponse">
+
+      <wsdl:part element="impl:addBasketResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="showBookRequest">
+
+      <wsdl:part element="impl:showBook" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buyRequest">
+
+      <wsdl:part element="impl:buy" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buyResponse">
+
+      <wsdl:part element="impl:buyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="testConnectionRequest">
+
+      <wsdl:part element="impl:testConnection" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="showBookResponse">
+
+      <wsdl:part element="impl:showBookResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Service">
+
+      <wsdl:operation name="showBook">
+
+         <wsdl:input message="impl:showBookRequest" name="showBookRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:showBookResponse" name="showBookResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buy">
+
+         <wsdl:input message="impl:buyRequest" name="buyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buyResponse" name="buyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="testConnection">
+
+         <wsdl:input message="impl:testConnectionRequest" name="testConnectionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:testConnectionResponse" name="testConnectionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addBasket">
+
+         <wsdl:input message="impl:addBasketRequest" name="addBasketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addBasketResponse" name="addBasketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServiceSoapBinding" type="impl:Service">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="showBook">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="showBookRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="showBookResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buy">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="testConnection">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="testConnectionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="testConnectionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addBasket">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addBasketRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addBasketResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServiceService">
+
+      <wsdl:port binding="impl:ServiceSoapBinding" name="Service">
+
+         <wsdlsoap:address location="http://localhost:8080/Rbaron01/services/Service"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

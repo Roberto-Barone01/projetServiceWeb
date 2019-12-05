@@ -30,11 +30,17 @@ public class MainClient {
             //System.out.println(req.tryToGetBook("root", "root", 340, true).code());
             //System.out.println(req.removeMeQueueMeta("root", "root", 10).code());
             
-            BookProperty book = req.initialiseBook();
-            book.title("The lord of the rings").price(34).edition("Seconda")
-            .isbn("DKDNDKND");
-            req.addBook("root", "root", book);
+//            BookProperty book = req.initialiseBook();
+//            book.title("The lord of the rings").price(34).edition("Seconda")
+//            .isbn("DKDNDKND");
+//            req.addBook("root", "root", book);
+//            
+            //System.out.println(req.book_client());
+            String root = "root";
+            //System.out.println(req.add_to_panier(root, root, 16));
+            System.out.println(req.buy("root", "root", 30));
             
+            req.showMyBooks("root","root");
             
         } catch (NotBoundException ex) {
             Logger.getLogger(MainClient.class.getName()).log(Level.SEVERE, null, ex);
