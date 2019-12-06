@@ -81,7 +81,7 @@ public interface QueryRequestable {
 	// Se il libro è richiesto da altri deve anche assegnarlo ad altri //
 	void add_complete_status_request(int id_user,int id_resource, boolean meta) throws SQLException;
 	
-	UpemResponseImp show_all_queue_user(int id_user) throws SQLException;
+	UpemResponseImp show_all_queue_user(int id_user, boolean meta) throws SQLException;
 	
 
 	int candidateForResource(int id_resource, boolean meta) throws SQLException;
@@ -101,5 +101,8 @@ public interface QueryRequestable {
 	String id_client(String user) throws SQLException;
 	
 	ArrayList<Integer> basket_user (int id_client) throws SQLException;
+
+	UpemResponseImp showResourceLent(int idUser, boolean b) throws SQLException;
+
 
 }

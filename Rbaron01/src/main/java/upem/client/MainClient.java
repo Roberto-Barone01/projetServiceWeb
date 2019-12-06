@@ -38,10 +38,13 @@ public class MainClient {
             //System.out.println(req.book_client());
             String root = "root";
             //System.out.println(req.add_to_panier(root, root, 16));
-            System.out.println(req.buy("root", "root", 30));
+            //System.out.println(req.buy("root", "root", 30));
             
-            req.showMyBooks("root","root");
+            //req.showMyBooks("root","root");
+            //System.out.println(req.showMyQueues(root,root,false).result());
+            //req.showResourceLent(root,root,true);
             
+            req.return_meta(root, root, 2);
         } catch (NotBoundException ex) {
             Logger.getLogger(MainClient.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {

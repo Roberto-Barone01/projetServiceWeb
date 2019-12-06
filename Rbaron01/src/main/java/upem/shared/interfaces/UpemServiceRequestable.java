@@ -61,7 +61,7 @@ public interface UpemServiceRequestable extends Remote {
 
 	UpemResponse showQueueMeta(int id) throws RemoteException, SQLException;
 
-	UpemResponse showMyQueues(String user, String password) throws RemoteException, SQLException;
+	UpemResponse showMyQueues(String user, String password, boolean meta) throws RemoteException, SQLException;
 
 	UpemResponse showMyResouces(String user, String password, boolean meta) throws RemoteException, SQLException;
 
@@ -92,5 +92,7 @@ public interface UpemServiceRequestable extends Remote {
 	String buy(String client, String password, double money) throws RemoteException, SQLException;
 
 	MetaProperty initialiseMeta() throws RemoteException;
+
+	UpemResponse showResourceLent(String user, String password, boolean meta) throws RemoteException, SQLException;
 	
 }

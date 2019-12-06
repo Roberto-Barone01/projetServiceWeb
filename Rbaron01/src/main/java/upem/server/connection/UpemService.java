@@ -185,7 +185,7 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 	}
 
 	@Override
-	public UpemResponse showMyQueues(String user, String password) throws RemoteException, SQLException {
+	public UpemResponse showMyQueues(String user, String password, boolean meta) throws RemoteException, SQLException {
 		
 		int idUser = dbop.id_user(user);
 
@@ -196,8 +196,33 @@ public class UpemService extends UnicastRemoteObject implements UpemServiceReque
 
 		if (!password.equals(passFinded))
 			return new UpemResponseImp(UpemServiceRequestable.INCORRECT_PASSWORD);
+		UpemResponseImp risp;
+		if(meta)
+			risp = dbop.show_all_queue_user(idUser, true);
+		else
+			risp = dbop.show_all_queue_user(idUser, false);
 		
-		UpemResponseImp risp = dbop.show_all_queue_user(idUser);
+		risp.setCode(UpemServiceRequestable.REQUEST_OK);
+		return risp;
+	}
+	
+	@Override
+	public UpemResponse showResourceLent(String user, String password, boolean meta) throws RemoteException, SQLException {
+		
+		int idUser = dbop.id_user(user);
+
+		if (idUser == -1)
+			return new UpemResponseImp(UpemServiceRequestable.NO_SUCH_USER);
+		String passFinded = dbop.password(idUser);
+
+		if (!password.equals(passFinded))
+			return new UpemResponseImp(UpemServiceRequestable.INCORRECT_PASSWORD);
+		UpemResponseImp risp;
+		if(meta)
+			risp = dbop.showResourceLent(idUser, true);
+		else
+			risp = dbop.showResourceLent(idUser, false);
+		
 		risp.setCode(UpemServiceRequestable.REQUEST_OK);
 		return risp;
 	}

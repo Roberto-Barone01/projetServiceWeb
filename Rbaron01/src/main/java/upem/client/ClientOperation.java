@@ -128,5 +128,29 @@ public class ClientOperation {
 		else
 			req.removeBook(user.get("username"), user.get("password"), id);
 	}
+	public static UpemResponse queueUser(boolean meta) throws MalformedURLException, RemoteException, NotBoundException, SQLException {
+		UpemServiceRequestable req = getInstance();
+		return req.showMyQueues(user.get("username"), user.get("password"),meta);
+	}
+	
+	public static void deleteMyQueue(boolean meta,int id_resource) throws MalformedURLException, RemoteException, NotBoundException, SQLException {
+		UpemServiceRequestable req = getInstance();
+		if(meta)
+			req.removeMeQueueMeta(user.get("username"), user.get("password"), id_resource);
+		else
+			req.removeMeQueueBook(user.get("username"), user.get("password"), id_resource);
+	}
+	
+	public static UpemResponse objectsBorrowed(boolean meta) throws MalformedURLException, RemoteException, NotBoundException, SQLException {
+		UpemServiceRequestable req = getInstance();
+		return req.showResourceLent(user.get("username"), user.get("password"), meta);
+	}
+	
+	
+	public static void returnResource(boolean meta, int id_resource) throws MalformedURLException, RemoteException, NotBoundException, SQLException {
+		UpemServiceRequestable req = getInstance();
+		req.return_resource(user.get("username"), user.get("password"), id_resource, meta);
+
+	}
 
 }
